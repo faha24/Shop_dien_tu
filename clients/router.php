@@ -4,4 +4,5 @@
 // kiểm tra act và điều hướng tới các controller phù hợp
 match ($route->getAct()) {
     '/' => (new HomeController())->index()
+    
 };

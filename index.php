@@ -7,6 +7,9 @@ require_once './commons/core.php';
 // khởi tạo các thành phần của ứng dụng
 $coreApp = new CoreApp();
 
+
+
+
 // khởi tạo global đối tượng view
 $viewApp = new BaseView();
 

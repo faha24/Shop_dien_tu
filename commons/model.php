@@ -1,5 +1,6 @@
 <?php 
 // Các thành phần mặc định của 1 model phải có. Tất cả các model đều phải kế thừa lớp này
+
 class BaseModel {
     public $tableName;
     public $conn;
@@ -18,6 +19,7 @@ class BaseModel {
             return $stmt->fetchAll();
         } catch (Exception $e) {
             $coreApp->debug($e);
+          
         }
     }
 

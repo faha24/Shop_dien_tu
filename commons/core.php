@@ -1,4 +1,5 @@
 <?php
+// abc = new CoreApp();
 
 class CoreApp {
     public $connDbGlobal;
@@ -9,6 +10,10 @@ class CoreApp {
         require_once join(DIRECTORY_SEPARATOR, array('.', 'commons', 'model.php')); // Controller cơ bản
         require_once join(DIRECTORY_SEPARATOR, array('.', 'commons', 'controller.php')); // Controller cơ bản
         require_once join(DIRECTORY_SEPARATOR, array('.', 'commons', 'view.php')); // View cơ bản
+
+        foreach (glob("./Service/*.php") as $file) {
+            require_once $file;
+        }
     }
 
     public function initApp($prefix) {
@@ -16,25 +21,39 @@ class CoreApp {
         $this->loadControllers($prefix);
         $this->loadModels($prefix);
 
+
         require_once join(DIRECTORY_SEPARATOR, array('.', $prefix, 'router.php'));
+       
     }
 
     public function loadAllFileWithStruct($directory, $struct) {
         $files = glob($directory . $struct);
+      
         // Duyệt qua từng tệp và thực hiện require_once
         foreach ($files as $file) {
+           
             require_once $file;
+            
+       
         }
+        
+ 
+
+
+      
+   
     }
 
     public function loadControllers($directory) {
         $directory = join(DIRECTORY_SEPARATOR, array('.', $directory, 'controllers'));
-        $this->loadAllFileWithStruct($directory,  '/*Controller.php');
+        $this->loadAllFileWithStruct($directory,  '\*Controller.php');
     }
 
     public function loadModels($directory) {
         $directory = join(DIRECTORY_SEPARATOR, array('.', $directory, 'models'));
-        $this->loadAllFileWithStruct($directory,  '/*.php');
+
+        $this->loadAllFileWithStruct($directory,  '\*.php');
+      
     }
 
     // Kết nối CSDL qua PDO
@@ -53,8 +72,9 @@ class CoreApp {
 
             // cài đặt chế độ trả dữ liệu
             $this->connDbGlobal->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        
+         
             return $this->connDbGlobal;
+
         } catch (PDOException $e) {
             $this->debug("Connection failed: " . $e->getMessage());
         }
