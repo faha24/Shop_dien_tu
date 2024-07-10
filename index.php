@@ -18,7 +18,7 @@ $route = new Route();
 if ($route->isAdminPage) {
     // khởi tạo các thành phần của admin
     $coreApp->initApp('admin');
-} else {
+} else {   
     // khởi tạo các thành phần của clients
     $coreApp->initApp('clients');
 }

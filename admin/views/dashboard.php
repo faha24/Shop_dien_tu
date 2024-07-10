@@ -1,16 +1,16 @@
-
- <div id="content">
+<!-- 
+ <div id="content"> -->
 
    <!------top-navbar-start----------->
 
-   <div class="top-navbar">
+   <!-- <div class="top-navbar">
      <div class="xd-topbar">
        <div class="row">
          <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
            <div class="xp-menubar">
              <span class="material-icons text-white">signal_cellular_alt</span>
            </div>
-         </div>
+         </div> -->
 
          <!-- <div class="col-md-5 col-lg-3 order-3 order-md-2">
                         <div class="xp-searchbar">
@@ -100,96 +100,7 @@
    <div class="main-content">
      <div class="row">
        <div class="col-md-12">
-         <div class="table-wrapper">
-
-           <div class="table-title">
-             <div class="row">
-               <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-                 <h2 class="ml-lg-2">Manage Products</h2>
-               </div>
-               <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
-                 <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
-                   <i class="material-icons">&#xE147;</i>
-                   <span>Add New Products</span>
-                 </a>
-                 <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
-                   <i class="material-icons">&#xE15C;</i>
-                   <span>Delete</span>
-                 </a> -->
-               </div>
-             </div>
-           </div>
-
-           <table class="table table-striped table-hover">
-             <thead>
-               <tr>
-                 <th>
-                  <!-- <span class="custom-checkbox">
-                     <input type="checkbox" id="selectAll">
-                     <label for="selectAll"></label> -->
-                    </th>
-                 <th>product_id</th>
-                 <th>product_name</th>
-                 <th>product_price</th>
-                 <th>product_des</th>
-                 <th>product_quantity</th>
-                 <th>category_name</th>
-                 <th>product_view</th>
-               </tr>
-             </thead>
-
-             <tbody class="list">
-              <?php foreach($data['product'] as $key) { ?>
-               <tr>
-                 <th></th>
-                 <th><?= $key['product_id'] ?></th>
-                 <th><?= $key['product_name'] ?></th>
-                 <th><?= $key['product_price'] ?></th>
-                 <th><?= $key['product_des'] ?></th>
-                 <th><?= $key['product_quantity'] ?></th>
-                 <th><?= $key['category_id'] ?></th>
-                 <th><?= $key['product_view'] ?></th>
-                 
-              
-                 <th>
-                   <a onclick="loadedit('<?= $key['product_id'] ?>')" href="#editEmployeeModal" class="edit" data-toggle="modal">
-                     <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                   </a>
-                   <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=delete_pr&id=<?= $key['product_id'] ?> " class="delete" data-toggle="modal">
-                     <i  class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                   </a>
-                 </th>
-               </tr>
-              <?php } ?>
-
-            
-             </tbody>
-
-
-           </table>
-
-           <div class="clearfix">
-             <div class="hint-text">showing <b>5</b> out of <b>25</b></div>
-             <ul class="pagination">
-               <li class="page-item disabled"><a href="#">Previous</a></li>
-               <li class="page-item "><a href="#" class="page-link">1</a></li>
-               <li class="page-item "><a href="#" class="page-link">2</a></li>
-               <li class="page-item active"><a href="#" class="page-link">3</a></li>
-               <li class="page-item "><a href="#" class="page-link">4</a></li>
-               <li class="page-item "><a href="#" class="page-link">5</a></li>
-               <li class="page-item "><a href="#" class="page-link">Next</a></li>
-             </ul>
-           </div>
-
-
-
-
-
-
-
-
-
-         </div>
+       <canvas id="myChart" width="400px" height="400px"></canvas>
        </div>
 
 
@@ -198,7 +109,7 @@
          <div class="modal-dialog" role="document">
            <div class="modal-content">
              <div class="modal-header">
-               <h5 class="modal-title">Add Employees</h5>
+               <h5 class="modal-title">Thêm Sản Phẩm</h5>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                  <span aria-hidden="true">&times;</span>
                </button>
@@ -207,23 +118,32 @@
                <div class="modal-body">
 
                  <div class="form-group">
-                   <label>product_name </label>
+                   <label>tên sản phẩm </label>
                    <input type="text"  class="form-control" required name="product_name">
                  </div>
                  <div class="form-group">
-                   <label>product_price</label>
+                   <label>Giá sản phẩm</label>
                    <input type="number" class="form-control" required name="product_price">
                  </div>
                  <div class="form-group">
-                   <label>product_des</label>
+                   <label>Mô tả sản phẩm</label>
                    <textarea class="form-control" name="product_des" required></textarea >
                  </div>
                  <div class="form-group">
-                   <label>product_quantity</label>
+                   <label>số lượng</label>
                    <input type="number" class="form-control" required name="product_quantity">
                  </div>
                  <div class="form-group">
-                   <label>category_id </label >
+                   <label>ảnh Đại diện sản phẩm</label>
+                   <input type="file" class="form-control" required name="product_quantity" >
+                 </div>
+                 <div class="form-group">
+                   <label>ảnh mô tả</label>
+                   <input type="file" class="form-control" required name="product_quantity" multiple="multiple">
+                 </div>
+                
+                 <div class="form-group">
+                   <label>loại sản phẩm </label >
                  <select name="category_id" id="">
                  <?php foreach($data['categories'] as $list) { ?>
                   <option value="<?= $list['category_id'] ?>"><?= $list['category_name'] ?></option>
@@ -249,78 +169,7 @@
 
 
        <!----edit-modal start--------->
-       <div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
-         <div class="modal-dialog" role="document">
-           <div class="modal-content">
-             <div class="modal-header">
-               <h5 class="modal-title">Edit Employees</h5>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-               </button>
-             </div>
-             <form action="index.php?mode=admin&act=add_pr" method="POST">
-               <div class="modal-body">
-
-                 <div class="form-group">
-                   <label>product_name </label>
-                   <input type="text" id="pr_name" class="form-control" required name="product_name">
-                 </div>
-                 <div class="form-group">
-                   <label>product_price</label>
-                   <input type="number" id="pr_price" class="form-control" required name="product_price">
-                 </div>
-                 <div class="form-group">
-                   <label>product_des</label>
-                   <textarea class="form-control" id="pr_des" name="product_des" required></textarea >
-                 </div>
-                 <div class="form-group">
-                   <label>product_quantity</label>
-                   <input type="number" class="form-control" id="pr_quantity" required name="product_quantity">
-                 </div>
-                 <div class="form-group">
-                   <label>category_id </label >
-                 <select name="category_id" id="cate_id">
-                 <?php foreach($data['categories'] as $list) { ?>
-                  <option  value="<?= $list['category_id'] ?>"><?= $list['category_name'] ?></option>
-                  <?php } ?>
-                 </select>
-                 </div>
-               
-               </div>
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                 <button type="submit" class="btn btn-success">Add</button>
-               </div>
-             </form>
-           </div>
-         </div>
-       </div>
-
-       <!----edit-modal end--------->
-
-
-       <!----delete-modal start--------->
-       <div class="modal fade" tabindex="-1" id="deleteEmployeeModal" role="dialog">
-         <div class="modal-dialog" role="document">
-           <div class="modal-content">
-             <div class="modal-header">
-               <h5 class="modal-title">Delete Employees</h5>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-               </button>
-             </div>
-             <div class="modal-body">
-               <p>Are you sure you want to delete this Records</p>
-               <p class="text-warning"><small>this action Cannot be Undone,</small></p>
-             </div>
-             <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-               <button type="submit" class="btn btn-success">delete</a></button>
-             </div>
-           </div>
-         </div>
-       </div>
-
+     
        <!----edit-modal end--------->
 
 

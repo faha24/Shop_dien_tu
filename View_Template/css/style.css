@@ -2188,3 +2188,30 @@ textarea.input {
     margin-top: 10px;
   }
 }
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.cart_qt{
+  button{
+    border: none;
+    background-color: #fff;
+  }
+  input{
+    border: none;
+ 
+      text-align: center;
+  
+  
+  }
+}
+.cart_delete{
+  
+    border: none;
+    background-color: #fff;
+  
+}

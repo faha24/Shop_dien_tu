@@ -798,7 +798,15 @@ background-color:rgba(0,0,0,0.09);
 			background-color:rgba(0,0,0,0.5);
 		}
 	}
-	
+	.flot-chart {
+		display: block;
+		height: 300px; }
+	  
+	  .flot-chart-content {
+		width: 100%;
+		height: 100%; }
+	  
+	  
 	
 	
 	

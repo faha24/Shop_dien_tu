@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="./lib/css/bootstrap.min.css">
 	    <!----css3---->
         <link rel="stylesheet" href="./lib/css/custom.css">
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 		
 		
 		<!--google fonts -->
@@ -20,7 +21,12 @@
 	
 	   <!--google material icon-->
       <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
-
+	  <style>
+        canvas{
+            height: 600px !important;
+            /* width: 600px !important; */
+        }
+    </style>
   </head>
   <body>
   
@@ -34,20 +40,20 @@
 	 
 	 <div id="sidebar">
 	    <div class="sidebar-header">
-		   <h3><img src="img/logo.png" class="img-fluid"/><span>vishweb design</span></h3>
+		   <h3><img src="img/logo.png" class="img-fluid"/><span>Admin</span></h3>
 		</div>
 		<ul class="list-unstyled component m-0">
 		  <li class="active">
-		  <a href="#" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
+		  <a href="index.php?mode=admin" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
 		  </li>
 		  
 		  <li class="dropdown">
 		  <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">aspect_ratio</i>Layouts
+		  <i class="material-icons">inventory_2</i>product
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
-		     <li><a href="#">layout 1</a></li>
+		     <li><a href="index.php?mode=admin&act=product">product Manage</a></li>
 			 <li><a href="#">layout 2</a></li>
 			 <li><a href="#">layout 3</a></li>
 		  </ul>
@@ -139,3 +145,12 @@
 		</ul>
 	 </div>
 	 
+<div id="content">
+	 <div class="top-navbar">
+  <div class="xd-topbar">
+    <div class="row">
+      <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+        <div class="xp-menubar">
+          <span class="material-icons text-white">signal_cellular_alt</span>
+        </div>
+      </div>

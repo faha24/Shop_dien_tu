@@ -25,6 +25,15 @@ class CoreApp {
         require_once join(DIRECTORY_SEPARATOR, array('.', $prefix, 'router.php'));
        
     }
+    public function getApp($prefix) {
+        global $route;
+        $this->loadControllers($prefix);
+        $this->loadModels($prefix);
+
+
+ 
+       
+    }
 
     public function loadAllFileWithStruct($directory, $struct) {
         $files = glob($directory . $struct);
