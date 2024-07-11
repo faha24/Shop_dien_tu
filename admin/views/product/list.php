@@ -152,7 +152,7 @@
               
            
               <th>
-                <a onclick="loadedit('<?= $key['id'] ?>')" href="#editEmployeeModal" class="edit" data-toggle="modal">
+                <a onclick="get_pr_edit('<?= $key['id'] ?>')" href="#editEmployeeModal" class="edit" data-toggle="modal">
                   <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                 </a>
                 <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=delete_pr&id=<?= $key['id'] ?> " class="delete" data-toggle="modal">
