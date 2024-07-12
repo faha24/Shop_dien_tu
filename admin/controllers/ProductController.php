@@ -71,4 +71,13 @@ class ProductController extends BaseController
       header('location:index.php?mode=admin');
         
     }
+    public function getdata(){
+        $product =$this->productModel-> allTable();
+        $arr =  array($product);
+        header('Content-Type: application/json');
+   
+       echo json_encode($product);
+ 
+        
+    }
 }

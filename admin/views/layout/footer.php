@@ -32,11 +32,52 @@
 
    });
 
+<<<<<<< HEAD
 
    
 
    // Tạo một đối tượng để lưu trữ dữ liệu từ các thẻ <th> của mỗi dòng
 
+=======
+   
+
+   var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line', // Loại biểu đồ: line, bar, pie, etc.
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+            label: 'Dataset 1',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        },
+        {
+            label: 'Dataset 2',
+            data: [28, 48, 40, 19, 86, 27, 90],
+            fill: false,
+            borderColor: 'rgb(255, 99, 132)',
+            tension: 0.1
+        },
+        {
+            label: 'Dataset 3',
+            data: [45, 33, 22, 17, 75, 50, 40],
+            fill: false,
+            borderColor: 'rgb(54, 162, 235)',
+            tension: 0.1
+        }],
+              
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+>>>>>>> 420a674301ecef7cfb84ce9a06116e5530025486
 </script>
 
 
