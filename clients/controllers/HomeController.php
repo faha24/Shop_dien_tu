@@ -7,4 +7,10 @@ class HomeController extends BaseController
     public function index() {
         $this->viewApp->requestView('index');
     }
+    public function cart() {
+        $this->viewApp->requestView('home.cart');
+    }
+
+
 }
+
