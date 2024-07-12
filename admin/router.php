@@ -8,4 +8,5 @@ match ($route->getAct()) {
    'add_pr' => (new ProductController())->addproducts(),
    'delete_pr' => (new ProductController())->deleteProduct(),
 'edit_pr' => (new ProductController())->editproducts(),
+
 };
