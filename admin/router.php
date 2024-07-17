@@ -8,9 +8,8 @@ match ($route->getAct()) {
    'add_pr' => (new ProductController())->addproducts(),
    'delete_pr' => (new ProductController())->deleteProduct(),
 'edit_pr' => (new ProductController())->editproducts(),
-<<<<<<< HEAD
-
-=======
 'getdata' => (new ProductController())->getdata(),
->>>>>>> 420a674301ecef7cfb84ce9a06116e5530025486
+'Detail_pr' => (new DetailController())->Index(),
+'add_pr_dt' => (new DetailController())->create(),
+'delete_pr_dt' => (new DetailController())->delete(),
 };

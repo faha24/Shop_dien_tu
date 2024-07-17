@@ -9,4 +9,4 @@ define('DB_HOST'    , 'localhost');
 define('DB_PORT'    , 3306);
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_NAME'    , 'du_an1');
+define('DB_NAME'    , 'shop_dien_tu');

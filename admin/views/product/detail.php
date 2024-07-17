@@ -78,13 +78,13 @@
                      </div>
                  </div> -->
 
-</div>
+                 </div>
 
 <div class="xp-breadcrumbbar text-center">
-  <h4 class="page-title">Product</h4>
+  <h4 class="page-title">Product_variant</h4>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Admin</a></li>
-    <li class="breadcrumb-item active" aria-curent="page">Product</li>
+    <li class="breadcrumb-item active" aria-curent="page">Product_variant</li>
   </ol>
 </div>
 
@@ -104,12 +104,12 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-              <h2 class="ml-lg-2">Manage Products</h2>
+              <h2 class="ml-lg-2">Manage Product_variant</h2>
             </div>
             <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
               <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
                 <i class="material-icons">&#xE147;</i>
-                <span>Add New Products</span>
+                <span>Add New Product_variant</span>
               </a>
               <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
                 <i class="material-icons">&#xE15C;</i>
@@ -128,39 +128,30 @@
                   <label for="selectAll"></label> -->
               </th>
               <th>id</th>
-              <th>product_name</th>
+              <th>color_id</th>
+              <th>size_id</th>
+              <th>quantity</th>
               <th>price</th>
-              <th>category_id</th>
-              <th>View</th>
-              <th>product_des</th>
-              <th>stock</th>
+             <th></th>
             </tr>
           </thead>
 
           <tbody class="list">
-            <?php foreach ($data['product'] as $key) { ?>
+            <?php foreach ($data['Details'] as $key) { ?>
               <tr>
                 <th></th>
                 <th><?= $key['id'] ?> </th>
-                <th><?= $key['product_name'] ?>
-                <?php if ($key['Detail_status'] == 0) { ?>
-                   <a href="index.php?mode=admin&act=Detail_pr&id=<?= $key['id'] ?>" class="edit" data-toggle="modal">
-                      <i class="material-icons" data-toggle="tooltip" title="variant">loupe</i>
-                    </a>
-
-                <?php } ?>
-              </th>
+                <th><?= $key['color_id'] ?></th>
+                <th><?= $key['size_id'] ?></th>
+                <th><?= $key['quantity'] ?></th>
                 <th><?= $key['price'] ?></th>
-                <th><?= $key['category_id'] ?></th>
-                <th><?= $key['View'] ?></th>
-                <th><?= $key['product_des'] ?></th>
-                <th><?= $key['stock'] ?></th>
+              
                
                 <th>
                   <a onclick="get_pr_edit('<?= $key['id'] ?>')" href="#editEmployeeModal" class="edit" data-toggle="modal">
                     <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                   </a>
-                  <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=delete_pr&id=<?= $key['id'] ?> " class="delete" data-toggle="modal">
+                  <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=delete_pr_dt&id=<?= $key['id'] ?> &pr_id=<?= $data['id'] ?>" class="delete" data-toggle="modal">
                     <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                   </a>
                 </th>
@@ -208,47 +199,36 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="index.php?mode=admin&act=add_pr" method="POST" enctype="multipart/form-data">
+          <form action="index.php?mode=admin&act=add_pr_dt&id=<?= $data['id'] ?>" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
 
+              
               <div class="form-group">
-                <label>tên sản phẩm </label>
-                <input type="text" class="form-control" required name="product_name">
+                <label>số lượng</label>
+                <input type="number" class="form-control" required name="quantity">
               </div>
               <div class="form-group">
                 <label>Giá sản phẩm</label>
-                <input type="number" class="form-control" required name="product_price">
+                <input type="number" class="form-control" required name="price" id="product_price">
               </div>
+             
               <div class="form-group">
-                <label>Mô tả sản phẩm</label>
-                <textarea class="form-control" name="product_des" required></textarea>
-              </div>
-              <div class="form-group">
-                <label>số lượng</label>
-                <input type="number" class="form-control" required name="product_quantity">
-              </div>
-              <div class="form-group">
-                <label>ảnh Đại diện sản phẩm</label>
-                <input type="file" class="form-control" name="img">
-              </div>
-              <div class="form-group">
-                <label>ảnh mô tả</label>
-                <input type="file" class="form-control" name="images[]" multiple="multiple">
-              </div>
-              <div class="form-group">
-                <label>biến thể</label><br>
-                <input type="radio" class="" required name="Details" value="0">có <br>
-                <input type="radio" class="" required name="Details" value="1">không
-              </div>
-
-              <div class="form-group">
-                <label>loại sản phẩm </label>
-                <select name="category_id" id="">
-                  <?php foreach ($data['categories'] as $list) { ?>
-                    <option value="<?= $list['id'] ?>"><?= $list['category_name'] ?></option>
+                <label>size sản phẩm </label>
+                <select name="size_id" id="">
+                  <?php foreach ($data['size'] as $list) { ?>
+                    <option value="<?= $list['id'] ?>"><?= $list['size_name'] ?></option>
                   <?php } ?>
                 </select>
               </div>
+              <div class="form-group">
+                <label>color sản phẩm </label>
+                <select name="color_id" id="">
+                  <?php foreach ($data['color'] as $list) { ?>
+                    <option value="<?= $list['id'] ?>"><?= $list['color_name'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+           
 
             </div>
             <div class="modal-footer">

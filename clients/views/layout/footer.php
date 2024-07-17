@@ -92,4 +92,11 @@
 			<!-- /bottom footer -->
 		</footer>
 </body>
+<script src="./lib/js/jquery.min.js"></script>
+    <script src="./lib/js/bootstrap.min.js"></script>
+    <script src="./lib/js/slick.min.js"></script>
+    <script src="./lib/js/nouislider.min.js"></script>
+    <script src="./lib/js/jquery.zoom.min.js"></script>
+    <script src="./lib/js/main.js"></script>
+	
 </html>

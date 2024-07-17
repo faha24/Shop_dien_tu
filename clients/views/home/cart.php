@@ -148,12 +148,12 @@
 
 
     <!-- jQuery Plugins -->
-    <script src="js/jquery.min.js"></script>
+    <!-- <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/slick.min.js"></script>
     <script src="js/nouislider.min.js"></script>
     <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script> -->
     <script>
         var checkAll = document.getElementById("checkAll");
         var qty = document.querySelectorAll('#qty');
@@ -174,7 +174,7 @@
                 var total_price = prarent.parentElement.parentElement.children[5].textContent;
 
                 price.innerHTML = qty * total_price;
-
+                summm();
             })
 
         });
@@ -195,7 +195,7 @@
 
                 price.innerHTML = qty * total_price;
 
-
+                summm();
 
             })
         });
@@ -240,6 +240,7 @@
                     }
 
                 }
+                summm();
             }
 
         )
