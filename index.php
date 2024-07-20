@@ -8,8 +8,7 @@ require_once './commons/core.php';
 $coreApp = new CoreApp();
 
 
-
-
+session_start();
 // khởi tạo global đối tượng view
 $viewApp = new BaseView();
 

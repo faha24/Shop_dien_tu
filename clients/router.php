@@ -7,4 +7,8 @@ match ($route->getAct()) {
     'cart' => (new HomeController())->cart(),
     'detail' => (new HomeController())->detail(),
     
+    'add_to_cart' => (new HomeController())->add_to_cart(),
+    'delete_cart' => (new HomeController())->delete_cart(),
+    'check_out' => (new HomeController())->check_out(),
+    'add_oder' => (new HomeController())->add_to_oder(),
 };
