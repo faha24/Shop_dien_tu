@@ -29,14 +29,14 @@ class DetailController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $quantity = $_POST['quantity'];
             $price = $_POST['price'];
-            $size_id = $_POST['size_id'];
+            // $size_id = $_POST['size_id'];
             $color_id = $_POST['color_id'];
          
             $data = array(
                 'product_id'=> $id,
                 'quantity' => $quantity,
                 'price' => $price,
-                'size_id' => $size_id,
+                // 'size_id' => $size_id,
                 'color_id' => $color_id,
                
             );

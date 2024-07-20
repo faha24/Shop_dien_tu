@@ -92,11 +92,44 @@
 			<!-- /bottom footer -->
 		</footer>
 </body>
+<script>
+		var thong_bao=document.getElementById("thong_bao");
+		console.log(thong_bao);
+		setTimeout(function() {
+			if(thong_bao){
+			thong_bao.style.display="none";
+			}
+		},2000);
+
+ 
+	</script>
 <script src="./lib/js/jquery.min.js"></script>
     <script src="./lib/js/bootstrap.min.js"></script>
     <script src="./lib/js/slick.min.js"></script>
     <script src="./lib/js/nouislider.min.js"></script>
     <script src="./lib/js/jquery.zoom.min.js"></script>
     <script src="./lib/js/main.js"></script>
+    <script src="./lib/js/setup.js"></script>
+    <script src="./lib/js/Ajax.js"></script>
+	<script>
+
+		data = <?= json_encode ($data['variant']) ?> ;
+		
+	  selectElement.addEventListener('change', function() {
+            // Lấy giá trị của option đã chọn
+           
+            var selectedValue = selectElement.value;
+
+            loadtest(data,selectedValue)
+          //   // In ra giá trị đã chọn để kiểm tra
+       
+          console.log(product_name);
+          //   console.log('Đã chọn màu có ID:', selectedValue);
+    
+            // Có thể thực hiện các hành động khác dựa trên giá trị đã chọn ở đây
+            // Ví dụ: gửi AJAX request để tải dữ liệu mới, ...
+});
+ 
+	</script>
 	
 </html>

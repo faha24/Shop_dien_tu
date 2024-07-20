@@ -1,3 +1,4 @@
+
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
     <!-- container -->
@@ -23,10 +24,12 @@
     <!-- container -->
     <div class="container">
         <!-- row -->
+        <form method="POST" action="index.php?act=check_out">
         <div class="row">
 
             <div class="col-md-12">
                 <!-- Billing Details -->
+              
                 <div class="billing-details">
                     <table class="table" id="bang">
                         <tr>
@@ -37,35 +40,38 @@
                             <th>giá</th>
                             <th></th>
                         </tr>
+                        <?php foreach ($_SESSION['cart'] as $key => $cart): ?>
+                            <?= var_dump($cart) ?>
                         <tr>
-                            <th><input type="checkbox" name="check"></th>
+                            <th><input type="checkbox" id="check" name="selected_items[]" value="<?= $key ?>"></th>
                             <th>
                                 <div class="product-widget">
                                     <div class="product-img">
-                                        <img src="./img/product01.png" alt="">
+                                        <img src="./lib/img/products/<?= $cart['img'] ?>" alt="">
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">980.00</h4><span>$</span>
+                                        <h3 class="product-name"><a href="#"><?= $cart['product_name'] ?></a></h3>
+                                        <h4 class="product-price">$<?= $cart['price'] ?></h4><span></span>
                                     </div>
 
                                 </div>
 
                             </th>
-                            <th>product name goes here</th>
+                            <th><?= $cart['product_name'] ?></th>
                             <th>
                                 <div class="cart_qt">
-                                    <button id="plus"><i class="fa fa-plus" aria-hidden="true"></i>
+                                    <button type="button" id="plus"><i class="fa fa-plus" aria-hidden="true"></i>
                                     </button>
-                                    <input type="number" style="width: 20px;" id="qty" value="1">
-                                    <button id="minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                    <input type="number" name="qty[<?= $key ?>]" style="width: 20px;" id="qty" value="<?= $cart['qty'] ?>">
+                                    <button type="button" id="minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                 </div>
                             </th>
-                            <th id="product-price">98000</th>
-                            <th hidden>98000</th>
-                            <th> <button class="cart_delete"><a href=""><i class="fa fa-close"></i></a></button></th>
+                            <th id="product-price"><?= $cart['price'] ?></th>
+                            <th hidden><?= $cart['price'] ?></th>
+                            <th> <button class="cart_delete"><a onclick="return confirm('chac chua')" href="<?= $route->getLocateClient('delete_cart' , ['id' => $key]) ?>"><i class="fa fa-close"></i></a></button></th>
                         </tr>
-                        <tr>
+                        <?php endforeach; ?>
+                        <!-- <tr>
                             <th><input type="checkbox" name="check"></th>
                             <th>
                                 <div class="product-widget">
@@ -92,10 +98,11 @@
                             <th id="product-price">98000</th>
                             <th hidden>98000</th>
                             <th> <button class="cart_delete"><a href=""><i class="fa fa-close"></i></a></button></th>
-                        </tr>
+                        </tr> -->
                     </table>
 
                 </div>
+               
                 <!-- /Billing Details -->
 
 
@@ -124,8 +131,8 @@
             <div class="col-md-2">
                 <!-- Billing Details -->
                 <div class="billing-details">
-                    <h5>Tổng tiền (1 Sản phẩm): <b class="text-danger" id="sum">1000</b> Đ</h1>
-                        <button class="btn btn-danger">Mua hàng</button>
+                    <h5>Tổng tiền (1 Sản phẩm): <b class="text-danger" id="sum">0</b> Đ</h1>
+                        <button type="submit" class="btn btn-danger">Mua hàng</button>
                 </div>
                 <!-- /Billing Details -->
 
@@ -137,6 +144,7 @@
             </div>
             <!-- /row -->
         </div>
+         </form>
         <!-- /container -->
     </div>
     <!-- /SECTION -->
@@ -162,7 +170,7 @@
         var plus = document.querySelectorAll("#plus")
         var minus = document.querySelectorAll("#minus")
         var product_price = document.querySelectorAll('#product-price');
-        var check = document.querySelectorAll('input[name=check]');
+        var check = document.querySelectorAll('#check');
         plus.forEach(element => {
             element.addEventListener('click', () => {
 
@@ -274,6 +282,7 @@
         // })
 
         function summm() {
+            console.log('dmm');
 
             var total = 0
        //     for (const item of product_price) {
@@ -292,6 +301,7 @@ for (const chon of check) {
                 
         //    }
             sum.innerHTML = total;
+            console.log(total);
 
         }
     </script>
