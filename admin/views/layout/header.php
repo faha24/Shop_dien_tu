@@ -63,10 +63,10 @@
 		   <li class="dropdown">
 		  <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">apps</i>widgets
+		  <i class="material-icons">apps</i>Category
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
-		     <li><a href="#">Apps 1</a></li>
+		  <li><a href="index.php?mode=admin&act=category">Category</a></li>
 			 <li><a href="#">Apps 2</a></li>
 			 <li><a href="#">Apps 3</a></li>
 		  </ul>
@@ -75,11 +75,10 @@
 		   <li class="dropdown">
 		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">equalizer</i>charts
-		  </a>
+		  <i class="material-icons">inventory_2</i>Trash
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
-		     <li><a href="#">Pages 1</a></li>
-			 <li><a href="#">Pages 2</a></li>
+		  <li><a href="index.php?mode=admin&act=trashCate">TrashCate</a></li>
+			 <li><a href="">Pages 2</a></li>
 			 <li><a href="#">Pages 3</a></li>
 		  </ul>
 		  </li>

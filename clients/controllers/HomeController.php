@@ -25,6 +25,7 @@ class HomeController extends BaseController
         );
         $this->viewApp->requestView('home.detail', $data);
     }
+    
 
 
 }

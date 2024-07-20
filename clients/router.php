@@ -6,4 +6,5 @@ match ($route->getAct()) {
     '/' => (new HomeController())->index(),
     'cart' => (new HomeController())->cart(),
     'detail' => (new HomeController())->detail(),
+    
 };
