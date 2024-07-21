@@ -59,6 +59,7 @@ class HomeController extends BaseController
                 'price' => $price,
                 'img' => $img,
                 'qty' => $qty,
+                'total'=>$qty*$price,
 
             );
             // var_dump($data);

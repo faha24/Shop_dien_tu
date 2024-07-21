@@ -1,4 +1,3 @@
-
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
     <!-- container -->
@@ -25,53 +24,53 @@
     <div class="container">
         <!-- row -->
         <form method="POST" action="index.php?act=check_out">
-        <div class="row">
+            <div class="row">
 
-            <div class="col-md-12">
-                <!-- Billing Details -->
-              
-                <div class="billing-details">
-                    <table class="table" id="bang">
-                        <tr>
-                            <th></th>
-                            <th>sản phẩm</th>
-                            <th>tên</th>
-                            <th>số lượng</th>
-                            <th>giá</th>
-                            <th></th>
-                        </tr>
-                        <?php foreach ($_SESSION['cart'] as $key => $cart): ?>
-                            <?= var_dump($cart) ?>
-                        <tr>
-                            <th><input type="checkbox" id="check" name="selected_items[]" value="<?= $key ?>"></th>
-                            <th>
-                                <div class="product-widget">
-                                    <div class="product-img">
-                                        <img src="./lib/img/products/<?= $cart['img'] ?>" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <h3 class="product-name"><a href="#"><?= $cart['product_name'] ?></a></h3>
-                                        <h4 class="product-price">$<?= $cart['price'] ?></h4><span></span>
-                                    </div>
+                <div class="col-md-12">
+                    <!-- Billing Details -->
 
-                                </div>
+                    <div class="billing-details">
+                        <table class="table" id="bang">
+                            <tr>
+                                <th></th>
+                                <th>sản phẩm</th>
+                                <th>tên</th>
+                                <th>số lượng</th>
+                                <th>giá</th>
+                                <th></th>
+                            </tr>
+                            <?php foreach ($_SESSION['cart'] as $key => $cart) : ?>
+                                <?= var_dump($cart) ?>
+                                <tr>
+                                    <th><input type="checkbox" id="check" name="selected_items[]" value="<?= $key ?>"></th>
+                                    <th>
+                                        <div class="product-widget">
+                                            <div class="product-img">
+                                                <img src="./lib/img/products/<?= $cart['img'] ?>" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-name"><a href="#"><?= $cart['product_name'] ?></a></h3>
+                                                <h4 class="product-price">$<?= $cart['price'] ?></h4><span></span>
+                                            </div>
 
-                            </th>
-                            <th><?= $cart['product_name'] ?></th>
-                            <th>
-                                <div class="cart_qt">
-                                    <button type="button" id="plus"><i class="fa fa-plus" aria-hidden="true"></i>
-                                    </button>
-                                    <input type="number" name="qty[<?= $key ?>]" style="width: 20px;" id="qty" value="<?= $cart['qty'] ?>">
-                                    <button type="button" id="minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                </div>
-                            </th>
-                            <th id="product-price"><?= $cart['price'] ?></th>
-                            <th hidden><?= $cart['price'] ?></th>
-                            <th> <button class="cart_delete"><a onclick="return confirm('chac chua')" href="<?= $route->getLocateClient('delete_cart' , ['id' => $key]) ?>"><i class="fa fa-close"></i></a></button></th>
-                        </tr>
-                        <?php endforeach; ?>
-                        <!-- <tr>
+                                        </div>
+
+                                    </th>
+                                    <th><?= $cart['product_name'] ?></th>
+                                    <th>
+                                        <div class="cart_qt">
+                                            <button type="button" id="plus"><i class="fa fa-plus" aria-hidden="true"></i>
+                                            </button>
+                                            <input type="number" name="qty[<?= $key ?>]" style="width: 20px;" id="qty" value="<?= $cart['qty'] ?>">
+                                            <button type="button" id="minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        </div>
+                                    </th>
+                                    <th id="product-price"><?= $cart['price'] ?></th>
+                                    <th hidden><?= $cart['price'] ?></th>
+                                    <th> <button class="cart_delete"><a onclick="return confirm('chac chua')" href="<?= $route->getLocateClient('delete_cart', ['id' => $key]) ?>"><i class="fa fa-close"></i></a></button></th>
+                                </tr>
+                            <?php endforeach; ?>
+                            <!-- <tr>
                             <th><input type="checkbox" name="check"></th>
                             <th>
                                 <div class="product-widget">
@@ -99,52 +98,52 @@
                             <th hidden>98000</th>
                             <th> <button class="cart_delete"><a href=""><i class="fa fa-close"></i></a></button></th>
                         </tr> -->
-                    </table>
+                        </table>
 
+                    </div>
+
+                    <!-- /Billing Details -->
+
+
+
+                    <!-- Order Details -->
+
+                    <!-- /Order Details -->
                 </div>
-               
-                <!-- /Billing Details -->
-
-
-
-                <!-- Order Details -->
-
-                <!-- /Order Details -->
+                <!-- /row -->
             </div>
-            <!-- /row -->
-        </div>
-        <div class="row">
+            <div class="row">
 
-            <div class="col-md-10">
-                <!-- Billing Details -->
-                <div class="billing-details">
-                    <input type="checkbox" id="checkAll"> Chọn tất cả
+                <div class="col-md-10">
+                    <!-- Billing Details -->
+                    <div class="billing-details">
+                        <input type="checkbox" id="checkAll"> Chọn tất cả
+                    </div>
+                    <!-- /Billing Details -->
+
+
+
+                    <!-- Order Details -->
+
+                    <!-- /Order Details -->
                 </div>
-                <!-- /Billing Details -->
+                <div class="col-md-2">
+                    <!-- Billing Details -->
+                    <div class="billing-details">
+                        <h5>Tổng tiền (1 Sản phẩm): <b class="text-danger" id="sum">0</b> Đ</h1>
+                            <button type="submit" class="btn btn-danger">Mua hàng</button>
+                    </div>
+                    <!-- /Billing Details -->
 
 
 
-                <!-- Order Details -->
+                    <!-- Order Details -->
 
-                <!-- /Order Details -->
-            </div>
-            <div class="col-md-2">
-                <!-- Billing Details -->
-                <div class="billing-details">
-                    <h5>Tổng tiền (1 Sản phẩm): <b class="text-danger" id="sum">0</b> Đ</h1>
-                        <button type="submit" class="btn btn-danger">Mua hàng</button>
+                    <!-- /Order Details -->
                 </div>
-                <!-- /Billing Details -->
-
-
-
-                <!-- Order Details -->
-
-                <!-- /Order Details -->
+                <!-- /row -->
             </div>
-            <!-- /row -->
-        </div>
-         </form>
+        </form>
         <!-- /container -->
     </div>
     <!-- /SECTION -->
@@ -171,6 +170,7 @@
         var minus = document.querySelectorAll("#minus")
         var product_price = document.querySelectorAll('#product-price');
         var check = document.querySelectorAll('#check');
+
         plus.forEach(element => {
             element.addEventListener('click', () => {
 
@@ -184,6 +184,20 @@
                 price.innerHTML = qty * total_price;
                 summm();
             })
+
+        });
+        plus.forEach(element => {
+           
+
+                var prarent = element.parentElement;
+                
+                var qty = prarent.children[1].value ;
+                var price = prarent.parentElement.parentElement.children[4];
+                var total_price = prarent.parentElement.parentElement.children[5].textContent;
+
+                price.innerHTML = qty * total_price;
+                summm();
+            
 
         });
 
@@ -255,20 +269,20 @@
 
         function check_one() {
 
-        check.forEach(element => {
-            element.addEventListener('click',()=>{
-           
-              if(element){
-                
-                  summm();
-                 
-              }
-            })
-        });   
-             
-            }
-         check_one()
-        
+            check.forEach(element => {
+                element.addEventListener('click', () => {
+
+                    if (element) {
+
+                        summm();
+
+                    }
+                })
+            });
+
+        }
+        check_one()
+
 
 
         //      table.addEventListener('click',(e)=>{
@@ -282,24 +296,24 @@
         // })
 
         function summm() {
-            console.log('dmm');
+            console.log('asdas');
 
             var total = 0
-       //     for (const item of product_price) {
-for (const chon of check) {
-    if(chon.checked == true){
-        //
-         total += Number(chon.parentElement.parentElement.children[4].textContent);
-    }else{
-        if(chon.checked == true){
-            total += Number(chon.parentElement.parentElement.children[4].textContent);
-        }
+            //     for (const item of product_price) {
+            for (const chon of check) {
+                if (chon.checked == true) {
+                    //
+                    total += Number(chon.parentElement.parentElement.children[4].textContent);
+                } else {
+                    if (chon.checked == true) {
+                        total += Number(chon.parentElement.parentElement.children[4].textContent);
+                    }
 
-    }
-    
-}
-                
-        //    }
+                }
+
+            }
+
+            //    }
             sum.innerHTML = total;
             console.log(total);
 

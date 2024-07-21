@@ -129,7 +129,7 @@
 											// Nếu có biến thể liên quan, hiển thị tùy chọn
 											if (!empty($variants)) {
 										?>
-												<option value="<?= $color['color_name'] ?>"><?= $color['color_name'] ?></option>
+												<option id="coloroption" color_id="<?= $color['id'] ?>" value="<?= $color['color_name'] ?>"><?= $color['color_name'] ?></option>
 										<?php
 											}
 										}

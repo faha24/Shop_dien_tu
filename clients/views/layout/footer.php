@@ -91,6 +91,7 @@
 			</div>
 			<!-- /bottom footer -->
 		</footer>
+	
 </body>
 <script>
 		var thong_bao=document.getElementById("thong_bao");
@@ -114,13 +115,20 @@
 	<script>
 
 		data = <?= json_encode ($data['variant']) ?> ;
+	
+		function getSelectedColorId() {
+            var selectedOption = selectElement.options[colorSelect.selectedIndex];
+            var colorId = selectedOption.getAttribute('color_id');
+            return colorId;
+        }
 		
 	  selectElement.addEventListener('change', function() {
+		var selectedColorId = getSelectedColorId();
             // Lấy giá trị của option đã chọn
-           
-            var selectedValue = selectElement.value;
+          
+			
 
-            loadtest(data,selectedValue)
+            loadtest(data,selectedColorId);
           //   // In ra giá trị đã chọn để kiểm tra
        
           console.log(product_name);
