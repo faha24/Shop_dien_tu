@@ -12,4 +12,12 @@ match ($route->getAct()) {
 'Detail_pr' => (new DetailController())->Index(),
 'add_pr_dt' => (new DetailController())->create(),
 'delete_pr_dt' => (new DetailController())->delete(),
+'category' => (new CategoriesController())->List(),
+'delete_cate' =>(new CategoriesController())->deleteCate(),
+'getdataCate' => (new CategoriesController())->getdataCate(),
+'edit_cate'=>(new CategoriesController())->editCates(),
+'add_cate'=>(new CategoriesController())->addCate(),
+'trashCate'=>(new CategoriesController())->ListTrash(),
+'edit_status' =>(new CategoriesController())->editStatus(),
+
 };

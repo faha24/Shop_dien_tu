@@ -49,7 +49,9 @@ class BaseModel {
                 ':id' => $id
             ]);
         } catch(Exception $e) {
+       
             $coreApp->debug($e);
+           
         }
     }
 

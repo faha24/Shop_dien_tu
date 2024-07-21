@@ -54,4 +54,5 @@ class DetailController extends BaseController
         $this->detailModel->removeIdTable($id);
         $this->route->redirectAdmin('Detail_pr',['id' => $pr_id]);
     }
+    
 }
