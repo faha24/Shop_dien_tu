@@ -10,7 +10,7 @@ class UserController extends BaseController{
   
     public function list(){
     $user =    $this->userModel->allTable();
-        $this->viewApp->requestView('users.list',['user' => $user]);
+        $this->viewApp->requestView('user.list',['user' => $user]);
 
     }
 }

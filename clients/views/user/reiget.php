@@ -28,10 +28,10 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="breadcrumb-header">login</h3>
+						<h3 class="breadcrumb-header">Đăng Ký</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li class="active">login</li>
+							<li><a href="#">Trang chủ</a></li>
+							<li class="active">Đăng Ký</li>
 						</ul>
 					</div>
 				</div>
@@ -46,13 +46,13 @@
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-                 <form action="index.php?act=authen" method="post">
+                 <form action="index.php?act=add_new_user" method="post">
 				<div class="row">
 					<div class="col-md-7">
 						<!-- Billing Details -->
 						<div class="billing-details">
 							<div class="section-title">
-								<h3 class="title">Đăng Nhập</h3>
+								<h3 class="title">Đăng Ký Tài Khoản</h3>
 							</div>
 							<div class="form-group">
                                 <label for="">Tên Tài Khoản</label>
@@ -62,13 +62,11 @@
 							
 							<div class="form-group">
                             <label for="">Mật Khẩu</label>
-								<input class="input" type="password" name="address" >
+								<input class="input" type="password" name="password" >
 							</div>
-							<div class="remember">
-							<input type="checkbox" name="" id=""><span>Nhớ tài khoản</span>
-							</div>
+							
 							<div class="link_reiget">
-                               Nếu bạn chưa có tài khoản <a href="index.php?act=reiget">Đăng ký</a>
+                               Nếu bạn đã có tài khoản <a href="index.php?act=login">Đăng Nhập</a>
                             </div>
 							
 							<div class="form-group">
@@ -147,3 +145,4 @@
 		</div>
 		<!-- /SECTION -->
 		<!-- NEWSLETTER -->
+	

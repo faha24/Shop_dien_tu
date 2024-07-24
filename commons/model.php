@@ -122,4 +122,18 @@ class BaseModel {
             return null;
         }
     }
+    public function findIdUser($id) {
+        try {
+            global $coreApp;
+            $sql = "SELECT * FROM {$this->tableName} WHERE username = :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([':id' => $id]);
+
+            return $stmt->fetch();
+        } catch(Exception $e) {
+            $coreApp->debug($e);
+        }
+    }
 }
