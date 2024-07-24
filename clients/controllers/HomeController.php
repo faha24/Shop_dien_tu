@@ -168,7 +168,7 @@ class HomeController extends BaseController
                 $this->oderModel->insertTable_item($data_item);
             }
 
-            $_SESSION['alert'] = "mã oder của bạn là:".$data_oder['oder_code'];
+            $_SESSION['alert'] = 'dat hang thanh cong';
             $this->router->redirectClient('cart');
         }
     }

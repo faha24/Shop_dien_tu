@@ -3,7 +3,7 @@
 class Home extends BaseModel  {
 
     public $tableName = 'products';
-    
+
     public $image = 'images';
     public $color = 'colors';
 public $varient = 'product_details';

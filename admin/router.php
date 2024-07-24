@@ -19,5 +19,5 @@ match ($route->getAct()) {
 'add_cate'=>(new CategoriesController())->addCate(),
 'trashCate'=>(new CategoriesController())->ListTrash(),
 'edit_status' =>(new CategoriesController())->editStatus(),
-'user' => (new UserController())->list(),
+
 };

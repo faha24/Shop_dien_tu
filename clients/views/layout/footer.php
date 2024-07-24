@@ -95,12 +95,12 @@
 </body>
 <script>
 		var thong_bao=document.getElementById("thong_bao");
-		// console.log(thong_bao);
+		console.log(thong_bao);
 		setTimeout(function() {
 			if(thong_bao){
 			thong_bao.style.display="none";
 			}
-		},5000);
+		},2000);
 
  
 	</script>
