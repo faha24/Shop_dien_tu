@@ -122,14 +122,16 @@ class BaseModel {
             return null;
         }
     }
-    public function findIdUser($id) {
+    public function findIdUser($name,$pass) {
         try {
             global $coreApp;
-            $sql = "SELECT * FROM {$this->tableName} WHERE username = :id";
+            $sql = "SELECT * FROM {$this->tableName} WHERE `username` = '$name' AND `password` = '$pass'";
+            // var_dump($sql);
+            // die();
 
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->execute([':id' => $id]);
+            $stmt->execute();
 
             return $stmt->fetch();
         } catch(Exception $e) {

@@ -22,12 +22,16 @@ class UserController extends BaseController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $_POST['name'];
-            if ($this->userModel->findIdUser($name)) {
+            $pass = $_POST['pass'];
+            if ($this->userModel->findIdUser($name,$pass)) {
                 $_SESSION['username'] = $name;
+              
             }
 
             if (isset($_SESSION['username'])) {
-                $this->viewApp->requestView('index');
+                $this->route->redirectClient('');
+            }else{
+                $this->route->redirectClient('login');
             }
         }
     }
@@ -61,5 +65,14 @@ class UserController extends BaseController
     public function logout(){
             unset($_SESSION['username']);
             $this->viewApp->requestView('user.login');
+    }
+    public function manager(){
+        $this->viewApp->requestView('user.usermanager');
+    }
+    public function address(){
+        $this->viewApp->requestView('user.createaddress');
+    }
+    public function list_address(){
+        $this->viewApp->requestView('user.listaddress');
     }
 }

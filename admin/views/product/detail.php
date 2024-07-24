@@ -142,7 +142,7 @@
                 <th></th>
                 <th><?= $key['id'] ?> </th>
                 <th><?= $key['color_id'] ?></th>
-                <th><?= $key['size_id'] ?></th>
+                <th></th>
                 <th><?= $key['quantity'] ?></th>
                 <th><?= $key['price'] ?></th>
               
