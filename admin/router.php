@@ -20,4 +20,6 @@ match ($route->getAct()) {
 'trashCate'=>(new CategoriesController())->ListTrash(),
 'edit_status' =>(new CategoriesController())->editStatus(),
 'user' => (new UserController())->list(),
+'trash_pr'=>(new ProductController())->ListTrash(),
+'edit_pr_status' =>(new ProductController())->editStatus(),
 };

@@ -7,6 +7,7 @@ class CategoriesController extends BaseController
   public function loadModels()
   {
     $this->categoryModel = new Category();
+    
     $this->route = new Route();
   }
   public function List()
@@ -16,7 +17,7 @@ class CategoriesController extends BaseController
   }
 public function ListTrash(){
   $cate = $this->categoryModel->allTable();
-  $this->viewApp->requestView('trash.trash', ['categories' => $cate]);
+  $this->viewApp->requestView('category.trash', ['categories' => $cate]);
 }
   public function deleteCate()
   {

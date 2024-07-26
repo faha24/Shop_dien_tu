@@ -111,10 +111,10 @@
                 <i class="material-icons">&#xE147;</i>
                 <span>Add New Products</span>
               </a>
-              <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
+              <a href="index.php?mode=admin&act=trash_pr" class="btn btn-danger" data-toggle="">
                 <i class="material-icons">&#xE15C;</i>
-                <span>Delete</span>
-              </a> -->
+                <span>trash</span>
+              </a>
             </div>
           </div>
         </div>
@@ -138,7 +138,9 @@
           </thead>
 
           <tbody class="list">
+       
             <?php foreach ($data['product'] as $key) { ?>
+              <?php if($key['status'] == 1){ ?>
               <tr>
                 <th></th>
                 <th><?= $key['id'] ?> </th>
@@ -165,6 +167,7 @@
                   </a>
                 </th>
               </tr>
+              <?php } ?>
             <?php } ?>
 
 

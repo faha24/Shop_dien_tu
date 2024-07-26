@@ -62,7 +62,7 @@
 							
 							<div class="form-group">
                             <label for="">Mật Khẩu</label>
-								<input class="input" type="password" name="address" >
+								<input class="input" type="password" name="pass" >
 							</div>
 							<div class="remember">
 							<input type="checkbox" name="" id=""><span>Nhớ tài khoản</span>

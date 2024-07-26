@@ -23,12 +23,12 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-              <h2 class="ml-lg-2">Manage Products</h2>
+              <h2 class="ml-lg-2">Manage Categories</h2>
             </div>
             <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
               <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
                 <i class="material-icons">&#xE147;</i>
-                <span>Add New Products</span>
+                <span>Add New Categories</span>
               </a>
               <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
                 <i class="material-icons">&#xE15C;</i>
