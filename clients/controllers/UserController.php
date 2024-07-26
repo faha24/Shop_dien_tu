@@ -10,8 +10,9 @@ class UserController extends BaseController
     {
         $this->userModel = new Users();
         $this->homeModel = new home();
-        $this->router = new Route();
-        $this->oderModel = new oder();
+        
+       $this->router = new Route();
+       $this->oderModel = new oder(); 
     }
 
     public function login()
