@@ -78,7 +78,7 @@
                      </div>
                  </div> -->
 
-</div>
+                 </div>
 
 <div class="xp-breadcrumbbar text-center">
   <h4 class="page-title">Product</h4>
@@ -107,14 +107,7 @@
               <h2 class="ml-lg-2">Manage Products</h2>
             </div>
             <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
-              <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
-                <i class="material-icons">&#xE147;</i>
-                <span>Add New Products</span>
-              </a>
-              <a href="index.php?mode=admin&act=trash_pr" class="btn btn-danger" data-toggle="">
-                <i class="material-icons">&#xE15C;</i>
-                <span>trash</span>
-              </a>
+            
             </div>
           </div>
         </div>
@@ -140,7 +133,7 @@
           <tbody class="list">
        
             <?php foreach ($data['product'] as $key) { ?>
-              <?php if($key['status'] == 1){ ?>
+              <?php if($key['status'] != 1){ ?>
               <tr>
                 <th></th>
                 <th><?= $key['id'] ?> </th>
@@ -159,7 +152,7 @@
                 <th><?= $key['stock'] ?></th>
                
                 <th>
-                  <a onclick="get_pr_edit('<?= $key['id'] ?>')" href="#editEmployeeModal" class="edit" data-toggle="modal">
+                <a  onclick="return confirm('Bạn có chắc lấy lại không')" href="index.php?mode=admin&act=edit_pr_status&id=<?= $key['id'] ?>" class="edit" data-toggle="modal">
                     <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                   </a>
                   <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=delete_pr&id=<?= $key['id'] ?> " class="delete" data-toggle="modal">

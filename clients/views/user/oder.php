@@ -71,6 +71,14 @@
 									
 									</label>
 								</div>
+								<div class="input-checkbox">
+									
+									<label for="category-1">
+										<span></span>
+										<a href="">Dơn hàng</a>	
+									
+									</label>
+								</div>
 
 							</div>
 						</div>
@@ -82,20 +90,77 @@
 					<div id="store" class="col-md-9">
 						<!-- store top filter -->
 						<div class="billing-details">
-							<div class="section-title">
-								<h3 class="title">Danh sách Địa chỉ </h3> <br/><br><br>
-								<a class="primary-btn" href="">tạo địa chỉ</a>
-							</div>
-							<div class="form-group " style="border: 1px solid black; border-radius: 10px; padding: 20px;" >
-							<label for="">stt: <span>1</span> <br>
-								<label for="">Địa chỉ: <span>abc</span>.</label><br>
-								<label for="">tên : <span>abc</span>.</label><br>
-								<label for="">Số điện thoại: <span>abc</span>.</label><br>
-								
-								<a class="btn btn-danger" style="background-color: #D10024;" href="">sửa</a>
-								<a class="btn btn-danger" style="background-color: #D10024;" href="">xóa</a>
+							<div><h1>đơn hàng</h1></div>
+						<table class="table" id="bang">
+                            <tr>
+                           
+                                <th>sản phẩm</th>
+                                <th>tên</th>
+                                <th>số lượng</th>
+                                <th>giá</th>
+                                <th>trạng thái</th>
+                            </tr>
+                            <?php if(isset($_SESSION['cart'])) { ?>
+                            <?php foreach ($_SESSION['cart'] as $key => $cart) : ?>
+                                <?= var_dump($cart) ?>
+                                <tr>
+                                    <th><input type="checkbox" id="check" name="selected_items[]" value="<?= $key ?>"></th>
+                                    <th>
+                                        <div class="product-widget">
+                                            <div class="product-img">
+                                                <img src="./lib/img/products/<?= $cart['img'] ?>" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-name"><a href="#"><?= $cart['product_name'] ?></a></h3>
+                                                <h4 class="product-price">$<?= $cart['price'] ?></h4><span></span>
+                                            </div>
 
-							</div>
+                                        </div>
+
+                                    </th>
+                                    <th><?= $cart['product_name'] ?></th>
+                                    <th>
+                                        <div class="cart_qt">
+                                            <button type="button" id="plus"><i class="fa fa-plus" aria-hidden="true"></i>
+                                            </button>
+                                            <input type="number" name="qty[<?= $key ?>]" style="width: 20px;" id="qty" value="<?= $cart['qty'] ?>">
+                                            <button type="button" id="minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        </div>
+                                    </th>
+                                    <th id="product-price"><?= $cart['price'] ?></th>
+                                    <th hidden><?= $cart['price'] ?></th>
+                                    <th> <button class="cart_delete"><a onclick="return confirm('chac chua')" href="<?= $route->getLocateClient('delete_cart', ['id' => $key]) ?>"><i class="fa fa-close"></i></a></button></th>
+                                </tr>
+                            <?php endforeach; ?>
+                            <?php  } ?>
+
+                            <tr>
+                 
+                            <th>
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="./img/product01.png" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                        <h4 class="product-price">980.00</h4><span>$</span>
+                                    </div>
+
+                                </div>
+
+                            </th>
+                            <th>product name goes here</th>
+                            <th>
+                                <div class="cart_qt"> 
+                                    1
+                                
+                                </div>
+                            </th>
+                            <th id="product-price">98000</th>
+                           
+                            <th> đang giao</th>
+                        </tr>
+                        </table>
 						
 							
 							

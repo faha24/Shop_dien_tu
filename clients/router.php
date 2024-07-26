@@ -19,4 +19,5 @@ match ($route->getAct()) {
     'user_manager' => (new UserController())->manager(),
     'create_adress' => (new UserController())->address(),
     'address' => (new UserController())->list_address(),
+    'oder' => (new UserController())->oder(),
 };

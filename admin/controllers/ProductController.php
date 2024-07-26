@@ -163,9 +163,14 @@ class ProductController extends BaseController
     public function deleteProduct()
     {
         $id = $_GET['id'];
-        $this->productModel->removeIdTable($id);
+        $this->productModel->updateIdTable(['status' => '2'],$id);
         $this->route->redirectAdmin('product');
     }
+    public function ListTrash(){
+        $cate = $this->productModel->allTable();
+        $this->viewApp->requestView('product.trash', ['product' => $cate]);
+      }
+      
     public function getdata()
     {
         $product = $this->productModel->allTable();
@@ -174,4 +179,14 @@ class ProductController extends BaseController
 
         echo json_encode($product);
     }
+    public function editStatus(){
+        $id = $_GET['id'];
+        $data = array(
+       
+          'status' => 1,
+         
+        );
+        $this->productModel->updateIdTable($data, $id);
+        $this->route->redirectAdmin('trash_pr');
+      }
 }

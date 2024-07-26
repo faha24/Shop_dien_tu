@@ -22,7 +22,7 @@ class UserController extends BaseController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $_POST['name'];
-            $pass = $_POST['pass'];
+            $pass = md5($_POST['pass']);
             if ($this->userModel->findIdUser($name,$pass)) {
                 $_SESSION['username'] = $name;
               
@@ -44,7 +44,7 @@ class UserController extends BaseController
       {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $_POST['name'];
-            $pass = $_POST['password'];
+            $pass = md5($_POST['password']);
             $arr = array(
                     'username' => $name,
                     'password' => $pass,
@@ -74,5 +74,8 @@ class UserController extends BaseController
     }
     public function list_address(){
         $this->viewApp->requestView('user.listaddress');
+    }
+    public function oder(){
+        $this->viewApp->requestView('user.oder');
     }
 }

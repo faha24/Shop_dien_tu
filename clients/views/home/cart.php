@@ -39,6 +39,7 @@
                                 <th>giá</th>
                                 <th></th>
                             </tr>
+                            <?php if(isset($_SESSION['cart'])) { ?>
                             <?php foreach ($_SESSION['cart'] as $key => $cart) : ?>
                                 <?= var_dump($cart) ?>
                                 <tr>
@@ -70,6 +71,7 @@
                                     <th> <button class="cart_delete"><a onclick="return confirm('chac chua')" href="<?= $route->getLocateClient('delete_cart', ['id' => $key]) ?>"><i class="fa fa-close"></i></a></button></th>
                                 </tr>
                             <?php endforeach; ?>
+                            <?php  } ?>
                             <!-- <tr>
                             <th><input type="checkbox" name="check"></th>
                             <th>
