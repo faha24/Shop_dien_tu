@@ -22,4 +22,6 @@ match ($route->getAct()) {
 'user' => (new UserController())->list(),
 'trash_pr'=>(new ProductController())->ListTrash(),
 'edit_pr_status' =>(new ProductController())->editStatus(),
+'oder_manage' => (new OderController())->Index(),
+'get_data_oder' => (new OderController())->getdataOder(),
 };
