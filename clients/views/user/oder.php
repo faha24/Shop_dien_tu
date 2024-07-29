@@ -1,3 +1,17 @@
+<?php
+
+$data = array_map(function($item) {
+    if (is_array($item)) {
+        return array_filter($item, function($subItem) {
+            return $subItem !== '';
+        });
+    }
+    return $item;
+}, $data);
+$data = array_filter($data, function($item) {
+    return !empty($item) && $item !== '';
+});
+ ?>
 <nav id="navigation">
 			<!-- container -->
 			<div class="container">
@@ -85,7 +99,7 @@
 						
 					</div>
 					<!-- /ASIDE -->
-
+					
 					<!-- STORE -->
 					<div id="store" class="col-md-9">
 						<!-- store top filter -->
@@ -93,24 +107,24 @@
 							<div><h1>đơn hàng</h1></div>
 						<table class="table" id="bang">
                             <tr>
-                           
-                                <th>sản phẩm</th>
-                                <th>tên</th>
-                                <th>số lượng</th>
+                                <th>mã đơn hàng</th>
+                                <th>sản phẩm </th>
                                 <th>giá</th>
+                                <th>số lượng</th>
                                 <th>trạng thái</th>
                             </tr>
-                            <?php if(isset($_SESSION['cart'])) { ?>
-                            <?php foreach ($_SESSION['cart'] as $key => $cart) : ?>
-                                <?= var_dump($cart) ?>
+                            <?php if(isset($data)) { ?>
+                            <?php foreach ($data as $key => $cart) : ?>
+                            
                                 <tr>
-                                    <th><input type="checkbox" id="check" name="selected_items[]" value="<?= $key ?>"></th>
+                                    <th> <?= $cart['oder_code'] ?> </th>
                                     <th>
                                         <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./lib/img/products/<?= $cart['img'] ?>" alt="">
-                                            </div>
+                                           
                                             <div class="product-body">
+											<div class="product-img">
+                                        <img src="./lib/img/products/<?= $cart['path'] ?>" alt="">
+                                    </div>
                                                 <h3 class="product-name"><a href="#"><?= $cart['product_name'] ?></a></h3>
                                                 <h4 class="product-price">$<?= $cart['price'] ?></h4><span></span>
                                             </div>
@@ -118,23 +132,35 @@
                                         </div>
 
                                     </th>
-                                    <th><?= $cart['product_name'] ?></th>
+                                    <th><?= $cart['subtotals'] ?></th>
                                     <th>
                                         <div class="cart_qt">
-                                            <button type="button" id="plus"><i class="fa fa-plus" aria-hidden="true"></i>
-                                            </button>
-                                            <input type="number" name="qty[<?= $key ?>]" style="width: 20px;" id="qty" value="<?= $cart['qty'] ?>">
-                                            <button type="button" id="minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                            
+                                            <input type="number" disabled name="qty[<?= $key ?>]" style="width: 20px;" id="qty" value="<?= $cart['quantity'] ?>">
+                                           
                                         </div>
                                     </th>
-                                    <th id="product-price"><?= $cart['price'] ?></th>
+                                    <th id="product-price"><?php switch ($cart['status']) {
+                                        case 0:
+                                            echo "chờ xác nhận";
+                                            break;
+                                        case 1:
+                                            echo "Đang giao";
+                                            break;
+                                        case 3:
+                                            echo "Thành công";
+                                            break;
+                                        case 4:
+                                            echo "Thất bại";
+                                            break;
+                                    } ?></th>
                                     <th hidden><?= $cart['price'] ?></th>
-                                    <th> <button class="cart_delete"><a onclick="return confirm('chac chua')" href="<?= $route->getLocateClient('delete_cart', ['id' => $key]) ?>"><i class="fa fa-close"></i></a></button></th>
+                                 
                                 </tr>
                             <?php endforeach; ?>
                             <?php  } ?>
 
-                            <tr>
+                            <!-- <tr>
                  
                             <th>
                                 <div class="product-widget">
@@ -159,7 +185,7 @@
                             <th id="product-price">98000</th>
                            
                             <th> đang giao</th>
-                        </tr>
+                        </tr> -->
                         </table>
 						
 							

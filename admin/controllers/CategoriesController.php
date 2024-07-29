@@ -12,7 +12,7 @@ class CategoriesController extends BaseController
   }
   public function List()
   {
-    $cate = $this->categoryModel->allTable();
+    $cate = $this->categoryModel->getitem();
     $this->viewApp->requestView('category.list', ['categories' => $cate]);
   }
 public function ListTrash(){
@@ -22,12 +22,8 @@ public function ListTrash(){
   public function deleteCate()
   {
     $id = $_GET['id'];
-    $data = array(
-      
-      'status' => 2,
-      // 'Detail_status' => $details,
-    );
-    $this->categoryModel->updateIdTable($data,$id);
+   
+    $this->categoryModel->removeIdTable($id);
 
 
     $this->route->redirectAdmin('category');

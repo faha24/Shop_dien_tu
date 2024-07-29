@@ -89,7 +89,7 @@
          </ol>
        </div>
 
-
+<?= $_SESSION['role'] ?>
      </div>
    </div>
    <!------top-navbar-end----------->

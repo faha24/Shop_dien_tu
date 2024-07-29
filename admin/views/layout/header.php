@@ -87,10 +87,10 @@
 		   <li class="dropdown">
 		  <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">extension</i>UI Element
+		  <i class="material-icons">extension</i>order
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu4">
-		     <li><a href="#">Pages 1</a></li>
+		     <li><a href="index.php?mode=admin&act=oder_manage">order</a></li>
 			 <li><a href="#">Pages 2</a></li>
 			 <li><a href="#">Pages 3</a></li>
 		  </ul>

@@ -35,6 +35,17 @@ class OderController extends BaseController
   
       echo json_encode($data);
     }
-   
+   public function edit_order(){
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $id = $_POST['id_oder'];
+        $status = $_POST['oder_status'];
+        // var_dump($status,$id);
+        // die();
+
+        $this -> oderModel->updateIdTable(['status' => $status],$id);
+        $this -> route -> redirectAdmin('oder_manage');
+        
+    }
+   }
     
 }

@@ -151,23 +151,20 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="index.php?mode=admin&act=edit_cate&status=1" method="POST" enctype="multipart/form-data">
+                    <form action="index.php?mode=admin&act=edit_data_oder" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
-                            <div class="form-group" hidden>
+                            <div class="form-group" hidden >
                                 <label>ID</label>
-                                <input type="text" class="form-control" name="id" id="id_oder">
+                                <input type="number" class="form-control" name="id_oder" id="id_oder">
                             </div>
-                            <select class="form-control" name="status" id="oder_status" required>
+                            <select class="form-control" name="oder_status" id="oder_status" required>
                                 <option value="0">Đang lên đơn</option>
                                 <option value="1">Đang giao</option>
                                 <option value="3">Thành công</option>
                                 <option value="4">Thất bại</option>
                             </select>
                         
-                            <div id="inputContainer">
-                           
-                            </div>
-
+                         
 
 
                         </div>

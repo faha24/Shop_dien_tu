@@ -24,11 +24,19 @@ class UserController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $_POST['name'];
             $pass = md5($_POST['pass']);
-            if ($this->userModel->findIdUser($name,$pass)) {
+            $user = $this->userModel->findIdUser($name,$pass);
+           
+            if ($user) {
                 $_SESSION['username'] = $name;
+                $_SESSION['user_role'] = $user['role'];
+                $_SESSION['user_id'] = $user['id'];
+                
               
             }
-
+            if($_SESSION['user_role'] == 0){
+                $this->route->redirectAdmin('');
+                exit();
+            }
             if (isset($_SESSION['username'])) {
                 $this->route->redirectClient('');
             }else{
@@ -65,6 +73,8 @@ class UserController extends BaseController
     }
     public function logout(){
             unset($_SESSION['username']);
+            unset($_SESSION['user_role']);
+            unset($_SESSION['user_id']);
             $this->viewApp->requestView('user.login');
     }
     public function manager(){
@@ -77,6 +87,9 @@ class UserController extends BaseController
         $this->viewApp->requestView('user.listaddress');
     }
     public function oder(){
-        $this->viewApp->requestView('user.oder');
+       $id = $this -> router -> getId();
+       $data = $this -> oderModel -> findIdUserOrder($id);
+   
+        $this->viewApp->requestView('user.oder',$data);
     }
 }

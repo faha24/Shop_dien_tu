@@ -134,8 +134,14 @@ class HomeController extends BaseController
             $address = $_POST['address'];
             $std = $_POST['tel'];
             $amount = $_POST['amount'];
+         
+            if(isset($_POST['user_id'])) {
+                $user_id = $_POST['user_id'];
+            }else {
+                $user_id = null;
+            }
             $data_oder = array(
-
+                'user_id' => $user_id,
                 'name' => $name,
                 'address' => $address,
                 'std' => $std,

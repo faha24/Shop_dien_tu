@@ -10,7 +10,6 @@ match ($route->getAct()) {
     'delete_cart' => (new HomeController())->delete_cart(),
     'check_out' => (new HomeController())->check_out(),
     'add_oder' => (new HomeController())->add_to_oder(),
-
     'login' => (new UserController())->login(),
     'authen' => (new UserController())->authen(),
     'reiget' => (new UserController())->reiget(),

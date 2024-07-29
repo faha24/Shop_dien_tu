@@ -96,6 +96,8 @@ class BaseModel {
             
             // Tạo câu lệnh SQL
             $sql = "UPDATE $this->tableName SET $setString WHERE id = :id";
+        //    var_dump($sql);
+        //    die();
             
             $stmt = $this->conn->prepare($sql);
             

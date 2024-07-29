@@ -76,6 +76,7 @@ $json_data = json_encode($data);
 							<div class="section-title">
 								<h3 class="title">Billing address</h3>
 							</div>
+
 							<div class="form-group">
 								<input class="input" type="text" name="name" placeholder="name">
 							</div>
@@ -92,6 +93,9 @@ $json_data = json_encode($data);
 							</div>
                             <input type="hidden" name="amount" value="<?=$total_amount ?>">
                             <input type="hidden" name="item[]" value="<?= htmlspecialchars($json_data, ENT_QUOTES, 'UTF-8') ?>">
+							<?php if ( isset($_SESSION['user_id'])) { ?>
+							<input type="hidden" name="user_id" value="<?=$_SESSION['user_id'] ?>">
+							<?php } ?>
 							<!-- <div class="form-group">
 								<div class="input-checkbox">
 									<input type="checkbox" id="create-account">

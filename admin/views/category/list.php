@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-
+     
         <table class="table table-striped table-hover">
           <thead>
             <tr>
@@ -48,8 +48,10 @@
               </th>
               <th>id</th>
               <th>category_name</th>
-              <th>status</th>
+              <th>product_qty</th>
+             
               <th>category_des</th>
+            
             
             </tr>
           </thead>
@@ -64,17 +66,21 @@
                 <th><?= $key['category_name'] ?>
                 
               </th>
-                <th><?= $key['status'] ?></th>
+              <th><?= $key ['total_products']  ?>  <?= $key['total_products'] == 0 ? '( có thể xóa)' : '' ?></th>
+                
                 <th><?= $key['category_des'] ?></th>
+           
          
                
                 <th>
                   <a onclick="get_cate_edit(<?= $key['id'] ?>)" href="#editEmployeeModal" class="edit" data-toggle="modal">
                     <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                   </a>
+                  <?php if ($key['total_products'] == 0) {  ?>
                   <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=delete_cate&id=<?= $key['id'] ?> " class="delete" data-toggle="modal">
                     <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                   </a>
+                  <?php } ?>
                 </th>
               </tr>
             <?php } } ?>
