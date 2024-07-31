@@ -298,7 +298,7 @@
         // })
 
         function summm() {
-            console.log('asdas');
+            // console.log('asdas');
 
             var total = 0
             //     for (const item of product_price) {
@@ -317,7 +317,7 @@
 
             //    }
             sum.innerHTML = total;
-            console.log(total);
+            // console.log(total);
 
         }
     </script>

@@ -14,16 +14,42 @@ class HomeController extends BaseController
 
     public function index()
     {
-        $this->viewApp->requestView('index');
+        $products=  $this ->homeModel -> allproducts();
+        $top = $products;
+      usort($top, function($a, $b) {
+            return $b['product_view'] <=> $a['product_view'];
+        });
+   
+        $this->viewApp->requestView('index',['products'=>$products ,'top'=>$top]);
     }
     public function cart()
     {
         $this->viewApp->requestView('home.cart');
     }
+    public function search(){
+       if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $seach = $_POST['search'];
+                $cate = $_POST['select'];
+                // var_dump($seach,$cate);
+               $search = $this->homeModel->findSeach($seach,$cate);
+               $seling = $search;
+               usort($seling, function($a, $b) {
+                return $b['product_view'] <=> $a['product_view'];
+            });
+       }
+       $this->viewApp->requestView('home.search',['search'=>$search,'seling' => $seling]);
+
+    }
     public function detail()
     {
         $id = $_GET['id'];
         $product = $this->homeModel->findIdTable($id);
+        $update = array(
+            'View' => $product['View'] + 1 ,
+        );
+      
+
+        $this->homeModel->updateIdTable($update,$id);
         $imgs = $this->homeModel->allimages($id);
         $variant = $this->homeModel->allvariant($id);
         $color = $this->homeModel->allcolor();

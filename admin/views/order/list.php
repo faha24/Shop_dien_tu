@@ -157,6 +157,7 @@
                                 <label>ID</label>
                                 <input type="number" class="form-control" name="id_oder" id="id_oder">
                             </div>
+                        
                             <select class="form-control" name="oder_status" id="oder_status" required>
                                 <option value="0">Đang lên đơn</option>
                                 <option value="1">Đang giao</option>

@@ -97,7 +97,7 @@
 					<!-- LOGO -->
 					<div class="col-md-3">
 						<div class="header-logo">
-							<a href="#" class="logo">
+							<a href="index.php" class="logo">
 								<img src="./lib/img/logo.png" alt="">
 							</a>
 						</div>
@@ -107,14 +107,14 @@
 					<!-- SEARCH BAR -->
 					<div class="col-md-6">
 						<div class="header-search">
-							<form>
-								<select class="input-select">
-									<option value="0">All Categories</option>
-									<option value="1">Category 01</option>
-									<option value="1">Category 02</option>
+							<form action="index.php?act=search" method="post">
+								<select class="input-select" name="select">
+									<option value=" ">All Categories</option>
+									<option value="rerach2">Category 01</option>
+									<option value="rerach3">Category 02</option>
 								</select>
-								<input class="input" placeholder="Search here">
-								<button class="search-btn">Search</button>
+								<input class="input" placeholder="Search here" name="search">
+								<button class="search-btn" type="submit">Search</button>
 							</form>
 						</div>
 					</div>
