@@ -191,7 +191,8 @@ $json_data = json_encode($data);
 						</div>
 						<div class="payment-method">
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-1">
+								<input type="radio" name="
+								" id="payment-1">
 								<label for="payment-1">
 									<span></span>
 									Direct Bank Transfer
@@ -201,7 +202,8 @@ $json_data = json_encode($data);
 								</div>
 							</div>
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-2">
+								<input type="radio" name="
+								" id="payment-2">
 								<label for="payment-2">
 									<span></span>
 									Cheque Payment
@@ -228,7 +230,7 @@ $json_data = json_encode($data);
 								I've read and accept the <a href="#">terms & conditions</a>
 							</label>
 						</div>
-					<button type="submit" class="primary-btn order-submit">Place order</button>	
+					<button type="submit" name="redirect" class="primary-btn order-submit">Place order</button>	
 					</div>
 					<!-- /Order Details -->
 				</div>

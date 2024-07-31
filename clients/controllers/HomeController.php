@@ -24,6 +24,23 @@ class HomeController extends BaseController
     }
     public function cart()
     {
+        if(isset($_GET['vnp_ResponseCode'])  && $_GET['vnp_ResponseCode'] == 00){
+            $id = $_GET['id'];
+            $data = array(
+                'payment' => 1,
+            );
+            $this -> oderModel -> updateIdTable($data,$id);
+            $_SESSION['alert'] = ' thanh toán thành công';
+
+        }else{
+            if(isset( $_SESSION['alert']) && isset($_GET['id'])){
+        $_SESSION['alert'] = 'thanh toán thất bại';
+        $id = $_GET['id'];
+        $this -> oderModel -> removeIdTable($id);
+        }
+       
+
+        }
         $this->viewApp->requestView('home.cart');
     }
     public function search(){
@@ -118,6 +135,7 @@ class HomeController extends BaseController
     }
     public function check_out()
     {
+     
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['selected_items'])) {
@@ -133,6 +151,7 @@ class HomeController extends BaseController
                     $quantity = $quantities[$key];
 
                     $data_oder[] = array(
+                       
                         'pr_id' => $product['pr_id'],
                         'product_name' => $product['product_name'],
                         'qty' => $quantity,
@@ -140,8 +159,7 @@ class HomeController extends BaseController
                         'subtotal' => $product['price'] * $quantity,
                     );
                 }
-                // var_dump($data_oder);
-                // die();
+               
                 $this->viewApp->requestView('home.checkout', $data_oder);
             } else {
                 $this->router->redirectClient('cart');
@@ -160,12 +178,13 @@ class HomeController extends BaseController
             $address = $_POST['address'];
             $std = $_POST['tel'];
             $amount = $_POST['amount'];
-         
+            
             if(isset($_POST['user_id'])) {
                 $user_id = $_POST['user_id'];
             }else {
                 $user_id = null;
             }
+           
             $data_oder = array(
                 'user_id' => $user_id,
                 'name' => $name,
@@ -175,6 +194,8 @@ class HomeController extends BaseController
                 'oderDate' => date('Y-m-d'),
                 'total_amount' => $amount,
                 'oder_code' => rand() . date('d'),
+                'payment' => 0,
+                
 
 
             );
@@ -182,8 +203,11 @@ class HomeController extends BaseController
 
             $item =  $_POST['item'][0];
             $item_arr = json_decode($item, true);
+            
             foreach ($item_arr as $item) {
                 // Kiểm tra nếu phần tử là mảng
+                // var_dump($item['']);
+
                 $product_names = $item['product_name'];
                 $quantities = $item['qty'];
                 $prices = $item['price'];
@@ -197,11 +221,133 @@ class HomeController extends BaseController
                     'subtotals' => $subtotals,
                     'product_id' => $pr_id,
                 );
+                if(isset($_SESSION['cart'] )){
+                    foreach($_SESSION['cart'] as $key => $cart){
+                        if($cart['product_name'] == $product_names){
+                            unset($_SESSION['cart'][$key]);
+                        }
+                    }
+                }
                 $this->oderModel->insertTable_item($data_item);
             }
 
             $_SESSION['alert'] = 'dat hang thanh cong';
             $this->router->redirectClient('cart');
+         
+            if(isset($_POST['payment'])){
+
+                error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+                $vnp_Returnurl = "http://localhost/Shop_dien_tu/index.php?act=cart&id=".$id;
+                $vnp_TmnCode = "3S63W6MR";//Mã website tại VNPAY 
+                $vnp_HashSecret = "1VP6KLP1H2MOZKMNZZWHIR7HDMX6KEBC"; //Chuỗi bí mật
+                // var_dump($vnp_HashSecret);
+                // die();
+                
+                $vnp_TxnRef = $id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này 
+                // sang VNPAY
+                $vnp_OrderInfo = 'thanh toán đơn hàng test';
+                $vnp_OrderType = 'billpayment';
+                $vnp_Amount = $subtotals * 100;
+                $vnp_Locale = 'vn';
+                $vnp_BankCode = '';
+                $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+                //Add Params of 2.0.1 Version
+                // $vnp_ExpireDate = $_POST['txtexpire'];
+                //Billing
+                // $vnp_Bill_Mobile = $_POST['txt_billing_mobile'];
+                // $vnp_Bill_Email = $_POST['txt_billing_email'];
+                // $fullName = trim($_POST['txt_billing_fullname']);
+                // if (isset($fullName) && trim($fullName) != '') {
+                //     $name = explode(' ', $fullName);
+                //     $vnp_Bill_FirstName = array_shift($name);
+                //     $vnp_Bill_LastName = array_pop($name);
+                // }
+                // $vnp_Bill_Address=$_POST['txt_inv_addr1'];
+                // $vnp_Bill_City=$_POST['txt_bill_city'];
+                // $vnp_Bill_Country=$_POST['txt_bill_country'];
+                // $vnp_Bill_State=$_POST['txt_bill_state'];
+                // // Invoice
+                // $vnp_Inv_Phone=$_POST['txt_inv_mobile'];
+                // $vnp_Inv_Email=$_POST['txt_inv_email'];
+                // $vnp_Inv_Customer=$_POST['txt_inv_customer'];
+                // $vnp_Inv_Address=$_POST['txt_inv_addr1'];
+                // $vnp_Inv_Company=$_POST['txt_inv_company'];
+                // $vnp_Inv_Taxcode=$_POST['txt_inv_taxcode'];
+                // $vnp_Inv_Type=$_POST['cbo_inv_type'];
+                $inputData = array(
+                    "vnp_Version" => "2.1.0",
+                    "vnp_TmnCode" => $vnp_TmnCode,
+                    "vnp_Amount" => $vnp_Amount,
+                    "vnp_Command" => "pay",
+                    "vnp_CreateDate" => date('YmdHis'),
+                    "vnp_CurrCode" => "VND",
+                    "vnp_IpAddr" => $vnp_IpAddr,
+                    "vnp_Locale" => $vnp_Locale,
+                    "vnp_OrderInfo" => $vnp_OrderInfo,
+                    "vnp_OrderType" => $vnp_OrderType,
+                    "vnp_ReturnUrl" => $vnp_Returnurl,
+                    "vnp_TxnRef" => $vnp_TxnRef,
+                    // "vnp_ExpireDate"=>$vnp_ExpireDate,
+                    // "vnp_Bill_Mobile"=>$vnp_Bill_Mobile,
+                    // "vnp_Bill_Email"=>$vnp_Bill_Email,
+                    // "vnp_Bill_FirstName"=>$vnp_Bill_FirstName,
+                    // "vnp_Bill_LastName"=>$vnp_Bill_LastName,
+                    // "vnp_Bill_Address"=>$vnp_Bill_Address,
+                    // "vnp_Bill_City"=>$vnp_Bill_City,
+                    // "vnp_Bill_Country"=>$vnp_Bill_Country,
+                    // "vnp_Inv_Phone"=>$vnp_Inv_Phone,
+                    // "vnp_Inv_Email"=>$vnp_Inv_Email,
+                    // "vnp_Inv_Customer"=>$vnp_Inv_Customer,
+                    // "vnp_Inv_Address"=>$vnp_Inv_Address,
+                    // "vnp_Inv_Company"=>$vnp_Inv_Company,
+                    // "vnp_Inv_Taxcode"=>$vnp_Inv_Taxcode,
+                    // "vnp_Inv_Type"=>$vnp_Inv_Type
+                );
+                
+                if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+                    $inputData['vnp_BankCode'] = $vnp_BankCode;
+                }
+                if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+                    $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+                }
+                
+                //var_dump($inputData);
+                ksort($inputData);
+                $query = "";
+                $i = 0;
+                $hashdata = "";
+                foreach ($inputData as $key => $value) {
+                    if ($i == 1) {
+                        $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+                    } else {
+                        $hashdata .= urlencode($key) . "=" . urlencode($value);
+                        $i = 1;
+                    }
+                    $query .= urlencode($key) . "=" . urlencode($value) . '&';
+                }
+                
+                $vnp_Url = $vnp_Url . "?" . $query;
+                if (isset($vnp_HashSecret)) {
+                    $vnpSecureHash =   hash_hmac('SHA512', $hashdata, $vnp_HashSecret);//  
+                    $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+                }
+                $returnData = array('code' => '00'
+                    , 'message' => 'success'
+                    , 'data' => $vnp_Url);
+                    if (isset($_POST['redirect'])) {
+                        
+                        header('Location: ' . $vnp_Url);
+                       die();
+                    } else {
+                        echo json_encode($returnData);
+                    }
+               }
+             
+            }
+           
+       
         }
     }
-}
+
