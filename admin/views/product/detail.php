@@ -78,7 +78,7 @@
                      </div>
                  </div> -->
 
-                 </div>
+</div>
 
 <div class="xp-breadcrumbbar text-center">
   <h4 class="page-title">Product_variant</h4>
@@ -107,10 +107,12 @@
               <h2 class="ml-lg-2">Manage Product_variant</h2>
             </div>
             <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
-              <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
-                <i class="material-icons">&#xE147;</i>
-                <span>Add New Product_variant</span>
-              </a>
+              <?php if (count($data['Details']) != count($data['color'])) { ?>
+                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
+                  <i class="material-icons">&#xE147;</i>
+                  <span>Add New Product_variant</span>
+                </a>
+              <?php } ?>
               <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
                 <i class="material-icons">&#xE15C;</i>
                 <span>Delete</span>
@@ -132,11 +134,12 @@
               <th>size_id</th>
               <th>quantity</th>
               <th>price</th>
-             <th></th>
+              <th></th>
             </tr>
           </thead>
 
           <tbody class="list">
+
             <?php foreach ($data['Details'] as $key) { ?>
               <tr>
                 <th></th>
@@ -145,8 +148,8 @@
                 <th></th>
                 <th><?= $key['quantity'] ?></th>
                 <th><?= $key['price'] ?></th>
-              
-               
+
+
                 <th>
                   <a onclick="get_pr_edit('<?= $key['id'] ?>')" href="#editEmployeeModal" class="edit" data-toggle="modal">
                     <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
@@ -202,7 +205,7 @@
           <form action="index.php?mode=admin&act=add_pr_dt&id=<?= $data['id'] ?>" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
 
-              
+
               <div class="form-group">
                 <label>số lượng</label>
                 <input type="number" class="form-control" required name="quantity">
@@ -211,24 +214,24 @@
                 <label>Giá sản phẩm</label>
                 <input type="number" class="form-control" required name="price" id="product_price">
               </div>
-             
-              <div class="form-group">
-                <label>size sản phẩm </label>
-                <select name="size_id" id="">
-                  <?php foreach ($data['size'] as $list) { ?>
-                    <option value="<?= $list['id'] ?>"><?= $list['size_name'] ?></option>
-                  <?php } ?>
-                </select>
-              </div>
+
+
               <div class="form-group">
                 <label>color sản phẩm </label>
                 <select name="color_id" id="">
                   <?php foreach ($data['color'] as $list) { ?>
-                    <option value="<?= $list['id'] ?>"><?= $list['color_name'] ?></option>
+                    <!-- <option value="<?= $list['id'] ?>"><?= $list['color_name'] ?></option> -->
+                    <?php foreach ($data['Details'] as $key) {
+                      if ($list['id'] != $key['id']) {
+                      } else { ?>
+                        <option value="<?= $list['id'] ?>"><?= $list['color_name'] ?></option>
+
+                    <?php   }
+                 }   ?>
                   <?php } ?>
                 </select>
               </div>
-           
+
 
             </div>
             <div class="modal-footer">

@@ -20,4 +20,5 @@ match ($route->getAct()) {
     'address' => (new UserController())->list_address(),
     'oder' => (new UserController())->oder(),
     'search'  => (new HomeController())->search(),
+    'comment' => (new HomeController())->comment(),
 };

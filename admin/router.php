@@ -20,11 +20,16 @@ if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) {
         'trashCate' => (new CategoriesController())->ListTrash(),
         'edit_status' => (new CategoriesController())->editStatus(),
         'user' => (new UserController())->list(),
+        'ban_user' => (new UserController())->ban(),
+        'unban_user' => (new UserController())->unban(),
         'trash_pr' => (new ProductController())->ListTrash(),
         'edit_pr_status' => (new ProductController())->editStatus(),
         'oder_manage' => (new OderController())->Index(),
         'get_data_oder' => (new OderController())->getdataOder(),
         'edit_data_oder' => (new OderController())->edit_order(),
+        'comment' =>(new commentController())->list(),
+        'ban_comment' => (new commentController())->ban(),
+        'unban_comment' => (new commentController())->unban(),
     };
 } else {
     $route->redirectClient('');

@@ -13,4 +13,14 @@ class UserController extends BaseController{
         $this->viewApp->requestView('user.list',['user' => $user]);
 
     }
+    public function ban(){
+        $id = $_GET['id'];
+        $this -> userModel->updateIdTable(['role' => 2 ],$id);
+        $this -> route -> redirectAdmin('user');
+    }
+    public function unban(){
+        $id = $_GET['id'];
+        $this -> userModel->updateIdTable(['role' => 1 ],$id);
+        $this -> route -> redirectAdmin('user');
+    }
 }

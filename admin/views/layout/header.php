@@ -40,7 +40,7 @@
 	 
 	 <div id="sidebar">
 	    <div class="sidebar-header">
-		   <h3><img src="img/logo.png" class="img-fluid"/><span>Admin</span></h3>
+		   <h3><img src="./lib/img/logo.png" class="img-fluid"/><span>Admin</span></h3>
 		</div>
 		<ul class="list-unstyled component m-0">
 		  <li class="active">
@@ -54,8 +54,7 @@
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
 		     <li><a href="index.php?mode=admin&act=product">product Manage</a></li>
-			 <li><a href="#">layout 2</a></li>
-			 <li><a href="#">layout 3</a></li>
+			
 		  </ul>
 		  </li>
 		  
@@ -63,82 +62,59 @@
 		   <li class="dropdown">
 		  <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">apps</i>Category
+		  <i class="material-icons">category</i>Category
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
 		  <li><a href="index.php?mode=admin&act=category">Category</a></li>
-			 <li><a href="#">Apps 2</a></li>
-			 <li><a href="#">Apps 3</a></li>
+			
 		  </ul>
 		  </li>
 		  
-		   <li class="dropdown">
-		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">inventory_2</i>Trash
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
-		  <li><a href="index.php?mode=admin&act=trashCate">TrashCate</a></li>
-			 <li><a href="">Pages 2</a></li>
-			 <li><a href="#">Pages 3</a></li>
-		  </ul>
-		  </li>
+	
 		  
 		  
 		   <li class="dropdown">
 		  <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">extension</i>order
+		  <i class="material-icons">fact_check</i>order
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu4">
 		     <li><a href="index.php?mode=admin&act=oder_manage">order</a></li>
-			 <li><a href="#">Pages 2</a></li>
-			 <li><a href="#">Pages 3</a></li>
+			
 		  </ul>
 		  </li>
 		  
 		   <li class="dropdown">
 		  <a href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">border_color</i>forms
+		  <i class="material-icons">person</i>user
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu5">
-		     <li><a href="#">Pages 1</a></li>
-			 <li><a href="#">Pages 2</a></li>
-			 <li><a href="#">Pages 3</a></li>
+		     <li><a href="index.php?mode=admin&act=user">user</a></li>
+			 
 		  </ul>
 		  </li>
 		  
 		  <li class="dropdown">
 		  <a href="#homeSubmenu6" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">grid_on</i>tables
+		  <i class="material-icons">comment</i>comment
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu6">
-		     <li><a href="#">table 1</a></li>
-			 <li><a href="#">table 2</a></li>
-			 <li><a href="#">table 3</a></li>
+		     <li><a href="index.php?mode=admin&act=comment">comment</a></li>
+		
 		  </ul>
 		  </li>
 		  
 		  
-		  <li class="dropdown">
-		  <a href="#homeSubmenu7" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">content_copy</i>Pages
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu7">
-		     <li><a href="#">Pages 1</a></li>
-			 <li><a href="#">Pages 2</a></li>
-			 <li><a href="#">Pages 3</a></li>
-		  </ul>
-		  </li>
+		
 		  
 		   
 		  <li class="">
-		  <a href="#" class=""><i class="material-icons">date_range</i>copy </a>
+		  <a href="index.php" class=""><i class="material-icons">home</i>home </a>
 		  </li>
 		  <li class="">
-		  <a href="#" class=""><i class="material-icons">library_books</i>calender </a>
+		  <a href="index.php?act=logout" class=""><i class="material-icons">logout</i>logout </a>
 		  </li>
 		
 		</ul>

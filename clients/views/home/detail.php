@@ -215,7 +215,7 @@
 						<div id="tab3" class="tab-pane fade in">
 							<div class="row">
 								<!-- Rating -->
-								<div class="col-md-3">
+								<!-- <div class="col-md-3">
 									<div id="rating">
 										<div class="rating-avg">
 											<span>4.5</span>
@@ -295,61 +295,28 @@
 											</li>
 										</ul>
 									</div>
-								</div>
+								</div> -->
 								<!-- /Rating -->
 
 								<!-- Reviews -->
 								<div class="col-md-6">
 									<div id="reviews">
 										<ul class="reviews">
+											<?php foreach($data['comment'] as $comment) { 
+												if($comment['status'] != 2 ){
+												?>
+												
 											<li>
 												<div class="review-heading">
-													<h5 class="name">John</h5>
-													<p class="date">27 DEC 2018, 8:0 PM</p>
-													<div class="review-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
+													<h5 class="name"><?=$comment['username']?></h5>
+													
 												</div>
 												<div class="review-body">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+													<p><?=$comment['content']?></p>
 												</div>
 											</li>
-											<li>
-												<div class="review-heading">
-													<h5 class="name">John</h5>
-													<p class="date">27 DEC 2018, 8:0 PM</p>
-													<div class="review-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
-												</div>
-												<div class="review-body">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-												</div>
-											</li>
-											<li>
-												<div class="review-heading">
-													<h5 class="name">John</h5>
-													<p class="date">27 DEC 2018, 8:0 PM</p>
-													<div class="review-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
-												</div>
-												<div class="review-body">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-												</div>
-											</li>
+											<?php }} ?>
+										
 										</ul>
 										<ul class="reviews-pagination">
 											<li class="active">1</li>
@@ -363,25 +330,18 @@
 								<!-- /Reviews -->
 
 								<!-- Review Form -->
-								<div class="col-md-3">
+								<div class="col-md-6">
+									
 									<div id="review-form">
-										<form class="review-form">
-											<input class="input" type="text" placeholder="Your Name">
-											<input class="input" type="email" placeholder="Your Email">
-											<textarea class="input" placeholder="Your Review"></textarea>
-											<div class="input-rating">
-												<span>Your Rating: </span>
-												<div class="stars">
-													<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-													<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-													<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-													<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-													<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
-												</div>
-											</div>
+										<form class="review-form" method="POST" action ="index.php?act=comment">
+											
+											<textarea class="input" required name="content"  <?= isset($_SESSION['username']) ? 'placeholder="comment" ' : 'placeholder="mời bạn đăng nhập" disabled' ?>></textarea>
+											<input type="hidden" name="pr_id" value="<?= $_GET['id']?>">
+											<input type="hidden" name="user_id" value="<?= $_SESSION['user_id']?>">
 											<button class="primary-btn">Submit</button>
 										</form>
 									</div>
+									
 								</div>
 								<!-- /Review Form -->
 							</div>

@@ -23,7 +23,7 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-              <h2 class="ml-lg-2">Manage User</h2>
+              <h2 class="ml-lg-2">Manage comment</h2>
             </div>
             <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
               <!-- <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
@@ -47,9 +47,10 @@
                   <label for="selectAll"></label> -->
               </th>
               <th>id</th>
+              <th>content</th>
               <th>status</th>
               <th>username</th>
-              <th>password</th>
+              <th>product_id</th>
              
 
 
@@ -57,15 +58,17 @@
           </thead>
 
           <tbody class="list">
-            <?php  foreach ($data['user'] as $value => $key) { ?>
+            <?php  foreach ($data['comment'] as $value => $key) { ?>
 
 
               <tr>
                 <th></th>
                 <th><?= $value+1 ?> </th>
-                <th><?=$key['role'] == 1 ? 'hoạt động' : 'bị ban'?></th>
+                <th><?= $key['content'] ?></th>
+                <th><?=$key['status'] == 1 ? 'hoạt động' : 'bị ban'?></th>
                 <th><?= $key['username'] ?></th>
-                <th>***********</th>
+                <th><?= $key['product_id'] ?></th>
+            
                 
 
 
@@ -75,12 +78,12 @@
 
 
                 <th>
-              <?php if ($key['role'] == 1 ) { ?>
-                  <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=ban_user&id=<?= $key['id'] ?> " class="delete" data-toggle="modal">
+              <?php if ($key['status'] == 1 ) { ?>
+                  <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=ban_comment&id=<?= $key['id'] ?> " class="delete" data-toggle="modal">
                     <i class="material-icons" data-toggle="tooltip" title="Delete">person_off</i>
                   </a>
                   <?php } else { ?>
-                    <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=unban_user&id=<?= $key['id'] ?> " class="delete" data-toggle="modal">
+                    <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=unban_comment&id=<?= $key['id'] ?> " class="delete" data-toggle="modal">
                     <i class="material-icons" data-toggle="tooltip" title="Delete">person_add</i>
                   </a>
                     <?php } ?>

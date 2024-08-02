@@ -5,11 +5,13 @@ class HomeController extends BaseController
     public $homeModel;
     public $oderModel;
     public $router;
+    public $commentModel;
     public function loadModels()
     {
         $this->homeModel = new home();
         $this->router = new Route();
         $this->oderModel = new oder();
+        $this ->commentModel = new comment();
     }
 
     public function index()
@@ -70,11 +72,13 @@ class HomeController extends BaseController
         $imgs = $this->homeModel->allimages($id);
         $variant = $this->homeModel->allvariant($id);
         $color = $this->homeModel->allcolor();
+        $comment = $this -> commentModel->allTable();
         $data = array(
             'product' => $product,
             'imgs' => $imgs,
             'variant' => $variant,
             'color' => $color,
+            'comment' => $comment
         );
 
 
@@ -349,5 +353,21 @@ class HomeController extends BaseController
            
        
         }
+    public function comment(){
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+           $data = array(
+            'content' => $_POST['content'],
+            'user_id' => $_POST['user_id'],
+            'product_id' => $_POST['pr_id'],
+            'status' => 1,
+
+           );
+         $this-> commentModel-> insertTable($data); 
+         $this->router->redirectClient('detail', ['id' => $_POST['pr_id']]);
+        }
     }
+    }
+
 

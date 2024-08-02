@@ -26,22 +26,31 @@ class UserController extends BaseController
             $pass = md5($_POST['pass']);
             $user = $this->userModel->findIdUser($name,$pass);
            
-            if ($user) {
+           
+            if ($user != null) {
+                if($user['role'] == 2){
+                    $this->route->redirectClient('login');
+                    exit();
+                }
                 $_SESSION['username'] = $name;
                 $_SESSION['user_role'] = $user['role'];
                 $_SESSION['user_id'] = $user['id'];
-                
-              
-            }
-            if($_SESSION['user_role'] == 0){
-                $this->route->redirectAdmin('');
-                exit();
-            }
-            if (isset($_SESSION['username'])) {
-                $this->route->redirectClient('');
+                if($_SESSION['user_role'] == 0){
+                    $this->route->redirectAdmin('');
+                    exit();
+                }else{
+                    $this->route->redirectClient('');
+                }
             }else{
                 $this->route->redirectClient('login');
             }
+            
+            // if($_SESSION['user_role'] == 0){
+            //     $this->route->redirectAdmin('');
+            //     exit();
+            // }
+          
+          
         }
     }
 
