@@ -59,7 +59,7 @@
 									
 									<label for="category-1">
 										<span></span>
-										<a href="">Hồ sơ</a>
+										<a href="index.php?act=user_manager">Hồ sơ</a>
 									
 									</label>
 								</div>
@@ -67,7 +67,7 @@
 									
 									<label for="category-1">
 										<span></span>
-										<a href="">Địa chỉ</a>
+										<a href="index.php?act=address">Địa chỉ</a>
 									
 									</label>
 								</div>
@@ -75,7 +75,7 @@
 									
 									<label for="category-1">
 										<span></span>
-										<a href="">Đơn hàng</a>	
+										<a href="index.php?act=oder">Đơn hàng</a>	
 									
 									</label>
 								</div>
@@ -93,16 +93,21 @@
 							<div class="section-title">
 								<h3 class="title">Hồ sơ</h3>
 							</div>
+							<form action="index.php?act=user_edit" method="post">
 							<div class="form-group">
 								<label for="">name</label>
-								<input class="input" type="text" name="first-name" placeholder=" ">
+								<input class="input" type="text" name="user_name" placeholder=" " value="<?= $data['user']['username'] ?>">
 							</div>
 							<div class="form-group">
-								<label for="">password</label>
-								<input class="input" type="password" name="last-name" placeholder="">
+								<label for="">email</label>
+								<input class="input" type="email" name="user_email" placeholder="" value ="<?= $data['user']['email'] ?>">
+							</div>
+							<div class="form-group">
+								<label for="">birthday</label>
+								<input class="input" type="date" name="user_birthday" placeholder="" value="<?= $data['user']['birthday'] ?>">
 							</div>
 							<button type="submit" class="primary-btn order-submit">cập nhật</button>
-							
+							</form>
 							
 						</div>
 					</div>

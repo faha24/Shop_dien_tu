@@ -90,26 +90,60 @@ class UserController extends BaseController
             $this->viewApp->requestView('user.login');
     }
     public function manager(){
-        $this->viewApp->requestView('user.usermanager');
+        $id = $_SESSION['user_id'];
+        if(!isset($id)){
+         $this->route -> redirectClient('login');
+        }
+        $user = $this->userModel->findIdTable($id);
+
+        $this->viewApp->requestView('user.usermanager', ['user' => $user]);
+    }
+    public function edit_user(){
+        $id = $_SESSION['user_id'];
+        if(!isset($id)){
+         $this->route -> redirectClient('login');
+        }
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $data = array (
+                'username' => $_POST['user_name'],
+                'email' => $_POST['user_email'],
+                'birthday' => $_POST['user_birthday'],
+            );
+            $this->userModel->updateIdTable($data,$id);
+        }
+
+       
+
+        $this->route ->redirectClient('user_manager');
     }
     public function address(){
         $this->viewApp->requestView('user.createaddress');
       
     }
     public function list_address(){
-       $adress = $this->adressModel->allTable();
+        $id = $_SESSION['user_id'];
+        if(!isset($id)){
+            $this->route -> redirectClient('login');
+           }
+       $adress = $this->adressModel->alladdress($id);
 
         $this->viewApp->requestView('user.listaddress',['address' => $adress]);
     }
     public function oder(){
-       $id = $this -> router -> getId();
+       $id = $_SESSION['user_id'];
+       if(!isset($id)){
+        $this->route -> redirectClient('login');
+       }
        $data = $this -> oderModel -> findIdUserOrder($id);
    
         $this->viewApp->requestView('user.oder',$data);
     }
     public function add_adress()
     {
-     
+        $id = $_SESSION['user_id'];
+        if(!isset($id)){
+         $this->route -> redirectClient('login');
+        }
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             $name = $_POST['name'];
@@ -134,8 +168,47 @@ class UserController extends BaseController
         }
     }
     public function del_dres() {
-            $id = $_GET['id'];
+            $id = $_GET['id']; 
+            if(!isset($id)){
+             $this->route -> redirectClient('login');
+            }
             $this->adressModel->removeIdTable($id);
             $this->router->redirectClient('address');
+    }
+    public function edit_adress_view(){
+        $id = $_GET['id'];
+        if(!isset($id)){
+         $this->route -> redirectClient('login');
+        }
+        $adress = $this->adressModel->findIdTable($id);
+        $this -> viewApp -> requestView('user.editaddress',['adress' => $adress]);
+    }
+    public function edit_adress(){
+        $id = $_GET['id'];
+       
+        if(!isset($id)){
+         $this->route -> redirectClient('login');
+        }
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+            $name = $_POST['name'];
+            $address = $_POST['address'];
+            $std = $_POST['tel'];
+          
+        
+            $data = array(
+             
+               
+                'adress_name' => $address,
+                'std' => $std,
+             
+                'name' => $name,
+              
+            );
+
+           $this->adressModel->updateIdTable($data,$id);
+            $this->router->redirectClient('address');        
+        }
+       
     }
 }

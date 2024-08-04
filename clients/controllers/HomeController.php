@@ -6,8 +6,13 @@ class HomeController extends BaseController
     public $oderModel;
     public $router;
     public $commentModel;
+    public $userModel;
+    public $adressModel;
+
     public function loadModels()
     {
+        $this->userModel = new Users();
+        $this->adressModel = new address();
         $this->homeModel = new home();
         $this->router = new Route();
         $this->oderModel = new oder();
@@ -26,8 +31,9 @@ class HomeController extends BaseController
     }
     public function cart()
     {
-        if(isset($_GET['vnp_ResponseCode'])  && $_GET['vnp_ResponseCode'] == 00){
+        if(isset($_GET['vnp_ResponseCode']) && $_GET['vnp_ResponseCode'] == 00 ){
             $id = $_GET['id'];
+           
             $data = array(
                 'payment' => 1,
             );
@@ -36,15 +42,49 @@ class HomeController extends BaseController
 
         }else{
             if(isset( $_SESSION['alert']) && isset($_GET['id'])){
+                unset($_SESSION['unset_cart']);
         $_SESSION['alert'] = 'thanh toán thất bại';
         $id = $_GET['id'];
         $this -> oderModel -> removeIdTable($id);
         }
+      
        
 
         }
+        if (isset($_SESSION['unset_cart'])  ) {
+            
+            $data = $_SESSION['unset_cart'];
+            // Giải mã JSON thành mảng PHP
+     
+            
+            $products_to_delete = [];
+            foreach ($data as $item) {
+                 
+                if (isset($item['name'])) {
+                    $products_to_delete[] = $item['name'];
+                }
+
+            }
+           
+            // Kiểm tra và xóa sản phẩm trong giỏ hàng
+            if (isset($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $key => $cart) {
+                    // Nếu tên sản phẩm trong giỏ hàng trùng với tên trong mảng cần xóa
+                    if (in_array($cart['product_name'], $products_to_delete)) {
+                        unset($_SESSION['cart'][$key]); // Xóa sản phẩm khỏi giỏ hàng
+                    }
+                }
+                
+                // Tái lập chỉ số mảng để tránh chỉ số không liên tục
+             
+                // Tái lập chỉ số mảng để tránh chỉ số không liên tục
+                
+                $_SESSION['cart'] = array_values($_SESSION['cart']);
+            }
+            unset($_SESSION['unset_cart']);
+        }
         $this->viewApp->requestView('home.cart');
-    }
+    } 
     public function search(){
        if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $seach = $_POST['search'];
@@ -125,7 +165,7 @@ class HomeController extends BaseController
             if (!$found) {
                 $_SESSION['cart'][] = $data;
             }
-            $_SESSION['alert'] = 'thêm vào giỏ hàng thành công';
+            $_SESSION['alert_detail'] = 'thêm vào giỏ hàng thành công';
             // var_dump($id);
             // die();
             $this->router->redirectClient('detail', ['id' => $id]);
@@ -139,7 +179,7 @@ class HomeController extends BaseController
     }
     public function check_out()
     {
-     
+        
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['selected_items'])) {
@@ -148,14 +188,13 @@ class HomeController extends BaseController
 
                 // Kiểm tra cấu trúc của mảng $selected_items
 
-
+              
                 // Xử lý các sản phẩm được chọn
                 foreach ($selected_items as $key) {
                     $product = $_SESSION['cart'][$key];
                     $quantity = $quantities[$key];
 
                     $data_oder[] = array(
-                       
                         'pr_id' => $product['pr_id'],
                         'product_name' => $product['product_name'],
                         'qty' => $quantity,
@@ -163,8 +202,28 @@ class HomeController extends BaseController
                         'subtotal' => $product['price'] * $quantity,
                     );
                 }
+                $id = $_SESSION['user_id'];
+                if(isset($id)){
+                    $user = $this -> userModel->findIdTable($id);
+                    $adress = $this -> adressModel ->alladdress($id);
+                    if(!isset($adress)){
+                        $adress = null;
+                    } 
+
+                    $data = array(
+                        'data_oder' => $data_oder,
+                        'user' => $user,
+                        'adress' => $adress,
+                     );
+
+                }else{
+                    $data = array(
+                        'data_oder' => $data_oder,
+                     );
+                }
+             
                
-                $this->viewApp->requestView('home.checkout', $data_oder);
+                $this->viewApp->requestView('home.checkout', $data);
             } else {
                 $this->router->redirectClient('cart');
             }
@@ -178,11 +237,28 @@ class HomeController extends BaseController
     public function add_to_oder()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $name = $_POST['name'];
-            $address = $_POST['address'];
-            $std = $_POST['tel'];
-            $amount = $_POST['amount'];
             
+            if(isset($_POST['check'])) {
+                $check = $_POST['check'];
+            }else {
+                $check = 'off';
+            }
+           
+            if($check == 'on'){
+                $name = $_POST['name1'];
+                $address = $_POST['adress1'];
+                $std = $_POST['telephone1'];
+               
+            }else{
+                $name = $_POST['name'];
+                $address = $_POST['address'];
+                $std = $_POST['tel'];
+             
+            }
+            
+            $amount = $_POST['amount'];
+            $check = $_POST['check'];
+      
             if(isset($_POST['user_id'])) {
                 $user_id = $_POST['user_id'];
             }else {
@@ -203,6 +279,7 @@ class HomeController extends BaseController
 
 
             );
+           
             $id = $this->oderModel->insertTable($data_oder);
 
             $item =  $_POST['item'][0];
@@ -225,25 +302,25 @@ class HomeController extends BaseController
                     'subtotals' => $subtotals,
                     'product_id' => $pr_id,
                 );
-                if(isset($_SESSION['cart'] )){
-                    foreach($_SESSION['cart'] as $key => $cart){
-                        if($cart['product_name'] == $product_names){
-                            unset($_SESSION['cart'][$key]);
-                        }
-                    }
-                }
+               $cart[] = array( 
+                'name' => $product_names,
+               );
+              
                 $this->oderModel->insertTable_item($data_item);
             }
+       
+            $_SESSION['unset_cart'] = $cart ;
 
+           
             $_SESSION['alert'] = 'dat hang thanh cong';
-            $this->router->redirectClient('cart');
+            $this->router->redirectClient('cart'  );
          
-            if(isset($_POST['payment'])){
+            if(isset($_POST['payment']) && $_POST['payment'] == 'payment'){
 
                 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-                $vnp_Returnurl = "http://localhost/Shop_dien_tu/index.php?act=cart&id=".$id;
+                $vnp_Returnurl = "http://localhost/Shop_dien_tu/index.php?act=cart&id=".$id   ;
                 $vnp_TmnCode = "3S63W6MR";//Mã website tại VNPAY 
                 $vnp_HashSecret = "1VP6KLP1H2MOZKMNZZWHIR7HDMX6KEBC"; //Chuỗi bí mật
                 // var_dump($vnp_HashSecret);
@@ -339,7 +416,7 @@ class HomeController extends BaseController
                 }
                 $returnData = array('code' => '00'
                     , 'message' => 'success'
-                    , 'data' => $vnp_Url);
+                    , 'data' => '' ,);
                     if (isset($_POST['redirect'])) {
                         
                         header('Location: ' . $vnp_Url);

@@ -73,7 +73,7 @@ $data = array_filter($data, function($item) {
 									
 									<label for="category-1">
 										<span></span>
-										<a href="">Hồ sơ</a>
+										<a href="index.php?act=user_manager">Hồ sơ</a>
 									
 									</label>
 								</div>
@@ -81,7 +81,7 @@ $data = array_filter($data, function($item) {
 									
 									<label for="category-1">
 										<span></span>
-										<a href="">Địa chỉ</a>
+										<a href="index.php?act=address">Địa chỉ</a>
 									
 									</label>
 								</div>
@@ -89,7 +89,7 @@ $data = array_filter($data, function($item) {
 									
 									<label for="category-1">
 										<span></span>
-										<a href="">Dơn hàng</a>	
+										<a href="index.php?act=oder">Đơn hàng</a>	
 									
 									</label>
 								</div>

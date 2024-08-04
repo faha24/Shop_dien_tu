@@ -49,7 +49,7 @@
 				<!-- row -->
 				<div class="row">
 					<!-- ASIDE -->
-					<div class="aside">
+                    <div class="aside">
 							<h3 class="aside-title">tài khoản của tôi</h3>
 							<div class="checkbox-filter">
 
@@ -87,22 +87,22 @@
 						<!-- store top filter -->
 						<div class="billing-details">
 							<div class="section-title">
-								<h3 class="title">Tạo Địa chỉ</h3>
+								<h3 class="title">Sửa Địa chỉ</h3>
 							</div>
-							<form action="index.php?act=add_adress" method="POST">
+							<form action="index.php?act=edit_adress&id=<?=$data['adress']['id'] ?>" method="POST">
 							<div class="form-group">
 								<label for="">Tên người nhận</label>
-								<input class="input" type="text" name="name" placeholder=" ">
+								<input class="input" type="text" name="name" placeholder=" " value="<?= $data['adress']['name'] ?>">
 							</div>
 							<div class="form-group">
 								<label for="">Địa chỉ</label>
-								<input class="input" type="text" name="address" placeholder=" ">
+								<input class="input" type="text" name="address" placeholder=" " value="<?= $data['adress']['adress_name'] ?>">
 							</div>
 							<div class="form-group">
 								<label for="">số điện thoại</label>
-								<input class="input" type="number" name="tel" placeholder="">   
+								<input class="input" type="number" name="tel" placeholder="" value="<?= $data['adress']['std'] ?>">   
 							</div>
-                            <button type="submit" class="primary-btn order-submit">Tạo địa chỉ</button>
+                            <button type="submit" class="primary-btn order-submit">sửa địa chỉ</button>
 							</form>
 							
 						</div>

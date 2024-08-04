@@ -94,11 +94,13 @@
 	
 </body>
 <script>
-		var thong_bao=document.getElementById("thong_bao");
-		console.log(thong_bao);
+		var thong_bao=document.getElementById("thong_bao1");
+		var phu_bong = document.getElementById("phu_bong");
+		console.log(phu_bong);
 		setTimeout(function() {
 			if(thong_bao){
 			thong_bao.style.display="none";
+			phu_bong.remove();
 			}
 		},2000);
 

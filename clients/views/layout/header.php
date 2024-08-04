@@ -31,20 +31,51 @@
 		body {
 			position: relative;
 		}
+		.phu_bong{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			opacity: 20%;
+			z-index: 900;
+		}
 
 		.thong_bao {
 			position: absolute;
 			background-color: white;
-			color: green;
+
 			width: 400px;
 			height: 200px;
-			border: 1px solid #111;
-			line-height: 200px;
+			border: 1px solid #D10024;
+			/* line-height: 150px; */
 			top: 20%;
 			z-index: 1000;
 			left: 500px;
-			padding-left: 65px;
+			
 			border-radius: 10px;
+			i{
+				padding-left: 145px;
+        font-size: 125px;
+		color: #D10024;
+			}
+			p{
+				padding-left: 80px;
+			}
+			.route{
+				button{
+					background-color: #D10024;
+					&:hover{
+						a{
+						color: black;
+					}
+					}
+					a{
+						color: white;
+					}
+				}
+				padding-left: 80px;
+				
+			}
 		}
 	</style>
 
@@ -61,12 +92,37 @@
 <body>
 	<!-- HEADER -->
 <?php if(isset($_SESSION['alert'])){ ?>
-	<div class="thong_bao" role="alert" id="thong_bao" >
-	<?= $_SESSION['alert'] ?>
+	<div class="phu_bong"></div>
+<div class="thong_bao" role="alert" id="thong_bao" >
+<i class="fa fa-check-circle-o"  aria-hidden="true"></i>
+<p><?= $_SESSION['alert'] ?></p>
+<div class="route">
+<button class="btn "><a href="index.php"> trang chủ</a></button>
+<button class="btn"><a   href="<?=  $_SESSION['alert'] !="thanh toán thất bại" ? 'index.php?act=oder' : 'index.php?act=cart' ?>">  <?=  $_SESSION['alert'] !="thanh toán thất bại" ? 'trang quản lý' : 'trang giỏ hàng' ?></a></button>
+
+</div>
+
+
 
 	</div>
-
+	
 <?php } unset($_SESSION['alert']) ; ?>
+<?php if(isset($_SESSION['alert_detail'])){ ?>
+
+<div class="thong_bao" role="alert" id="thong_bao1" >
+<i class="fa fa-check-circle-o"  aria-hidden="true"></i>
+<p><?= $_SESSION['alert_detail'] ?></p>
+<div class="route">
+
+
+</div>
+
+
+
+	</div>
+	
+<?php } unset($_SESSION['alert_detail']) ; ?>
+
 
 	<header>
 		<!-- TOP HEADER -->
@@ -78,7 +134,7 @@
 					<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 				</ul>
 				<ul class="header-links pull-right">
-				<li><a href="index.php<?=isset($_SESSION['username']) ? '' : "?act=xlogin"?>"><i class="fa fa-user-o"></i> <?= isset($_SESSION['username']) ? $_SESSION['username'] : "Đăng Nhập" ?></a></li>
+				<li><a href="index.php<?=isset($_SESSION['username']) ? '?act=user_manager' : "?act=login"?>"><i class="fa fa-user-o"></i> <?= isset($_SESSION['username']) ? $_SESSION['username'] : "Đăng Nhập" ?></a></li>
 				<li><a href="index.php?act=<?=isset($_SESSION['username']) ? 'logout' : "reiget"?>"><i class="fa fa-user-o"></i><?= isset($_SESSION['username']) ? 'Đăng xuất' : "Đăng ký" ?></a></li>
 			</ul>
 			</div>

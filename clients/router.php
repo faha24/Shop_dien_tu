@@ -16,6 +16,7 @@ match ($route->getAct()) {
     'add_new_user' => (new UserController())->new_reiget(),
     'logout' => (new UserController())->logout(),
     'user_manager' => (new UserController())->manager(),
+    'user_edit' => (new UserController())->edit_user(),
     'page_adress' => (new UserController())->address(),
     'address' => (new UserController())->list_address(),
     'oder' => (new UserController())->oder(),
@@ -23,4 +24,6 @@ match ($route->getAct()) {
     'comment' => (new HomeController())->comment(),
     'add_adress' => (new UserController())->add_adress(),
     'delete_adress' => (new UserController())->del_dres(),
+    'edit_adress_view' => (new UserController())->edit_adress_view(),
+    'edit_adress' => (new UserController())->edit_adress(),
 };
