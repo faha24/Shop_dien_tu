@@ -52,7 +52,7 @@
 					<div id="aside" class="col-md-3">
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">tài khoản của tôi</h3>
+							<h3 class="aside-title">Tài khoản của tôi</h3>
 							<div class="checkbox-filter">
 
 								<div class="input-checkbox">
@@ -75,7 +75,7 @@
 									
 									<label for="category-1">
 										<span></span>
-										<a href="">Dơn hàng</a>	
+										<a href="">Đơn hàng</a>	
 									
 									</label>
 								</div>
@@ -91,18 +91,23 @@
 						<!-- store top filter -->
 						<div class="billing-details">
 							<div class="section-title">
-								<h3 class="title">Địa chỉ</h3>
+								<h3 class="title">Tạo Địa chỉ</h3>
+							</div>
+							<form action="index.php?act=add_adress" method="POST">
+							<div class="form-group">
+								<label for="">Tên người nhận</label>
+								<input class="input" type="text" name="name" placeholder=" ">
 							</div>
 							<div class="form-group">
 								<label for="">Địa chỉ</label>
-								<input class="input" type="text" name="first-name" placeholder=" ">
+								<input class="input" type="text" name="address" placeholder=" ">
 							</div>
 							<div class="form-group">
 								<label for="">số điện thoại</label>
-								<input class="input" type="text" name="last-name" placeholder="">   
+								<input class="input" type="text" name="tel" placeholder="">   
 							</div>
-                            <button type="submit" class="primary-btn order-submit">tạo địa chỉ</button>
-							
+                            <button type="submit" class="primary-btn order-submit">Tạo địa chỉ</button>
+							</form>
 							
 						</div>
 					</div>

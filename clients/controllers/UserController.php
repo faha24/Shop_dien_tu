@@ -6,13 +6,16 @@ class UserController extends BaseController
     public $oderModel;
     public $router;
     public $userModel;
+
+    public $adressModel ; 
     public function loadModels()
     {
         $this->userModel = new Users();
         $this->homeModel = new home();
-        
-       $this->router = new Route();
-       $this->oderModel = new oder(); 
+        $this->adressModel = new address();
+        $this->router = new Route();
+        $this->oderModel = new oder(); 
+    //    $this->adressModel = new adress();  // add model for adress
     }
 
     public function login()
@@ -91,14 +94,48 @@ class UserController extends BaseController
     }
     public function address(){
         $this->viewApp->requestView('user.createaddress');
+      
     }
     public function list_address(){
-        $this->viewApp->requestView('user.listaddress');
+       $adress = $this->adressModel->allTable();
+
+        $this->viewApp->requestView('user.listaddress',['address' => $adress]);
     }
     public function oder(){
        $id = $this -> router -> getId();
        $data = $this -> oderModel -> findIdUserOrder($id);
    
         $this->viewApp->requestView('user.oder',$data);
+    }
+    public function add_adress()
+    {
+     
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+            $name = $_POST['name'];
+            $address = $_POST['address'];
+            $std = $_POST['tel'];
+            $user_id = $_SESSION['user_id'];
+        
+            $data = array(
+             
+               
+                'adress_name' => $address,
+                'std' => $std,
+                'user_id' => $user_id,
+                'name' => $name,
+                'role'=> 1,
+            );
+
+            if($this->adressModel->insertTable($data)){
+            $this->router->redirectClient('address');        
+        }
+
+        }
+    }
+    public function del_dres() {
+            $id = $_GET['id'];
+            $this->adressModel->removeIdTable($id);
+            $this->router->redirectClient('address');
     }
 }

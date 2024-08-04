@@ -16,9 +16,11 @@ match ($route->getAct()) {
     'add_new_user' => (new UserController())->new_reiget(),
     'logout' => (new UserController())->logout(),
     'user_manager' => (new UserController())->manager(),
-    'create_adress' => (new UserController())->address(),
+    'page_adress' => (new UserController())->address(),
     'address' => (new UserController())->list_address(),
     'oder' => (new UserController())->oder(),
     'search'  => (new HomeController())->search(),
     'comment' => (new HomeController())->comment(),
+    'add_adress' => (new UserController())->add_adress(),
+    'delete_adress' => (new UserController())->del_dres(),
 };

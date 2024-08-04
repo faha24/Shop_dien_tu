@@ -75,7 +75,7 @@
 									
 									<label for="category-1">
 										<span></span>
-										<a href="">Dơn hàng</a>	
+										<a href="">Đơn hàng</a>	
 									
 									</label>
 								</div>
@@ -91,20 +91,21 @@
 						<div class="billing-details">
 							<div class="section-title">
 								<h3 class="title">Danh sách Địa chỉ </h3> <br/><br><br>
-								<a class="primary-btn" href="">tạo địa chỉ</a>
+								<a class="primary-btn" href="index.php?act=page_adress">Tạo địa chỉ</a>
 							</div>
+							<?php  foreach($data['address'] as $stt => $key){?>
 							<div class="form-group " style="border: 1px solid black; border-radius: 10px; padding: 20px;" >
-							<label for="">stt: <span>1</span> <br>
-								<label for="">Địa chỉ: <span>abc</span>.</label><br>
-								<label for="">tên : <span>abc</span>.</label><br>
-								<label for="">Số điện thoại: <span>abc</span>.</label><br>
+							<label for="">stt: <span><?=$stt?></span> <br>
+								<label for="">Địa chỉ: <span><?=$key['adress_name']?></span>.</label><br>
+								<label for="">Tên người nhận : <span><?=$key['name']?></span>.</label><br>
+								<label for="">Số điện thoại: <span><?=$key['std']?></span>.</label><br>
 								
 								<a class="btn btn-danger" style="background-color: #D10024;" href="">sửa</a>
-								<a class="btn btn-danger" style="background-color: #D10024;" href="">xóa</a>
+								<a class="btn btn-danger" style="background-color: #D10024;" href="index.php?act=delete_adress&id=<?=$key['id']?>">xóa</a>
 
 							</div>
 						
-							
+							<?php } ?>
 							
 						</div>
 					</div>
