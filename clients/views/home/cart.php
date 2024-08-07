@@ -41,7 +41,7 @@
                             </tr>
                             <?php if(isset($_SESSION['cart'])) { ?>
                             <?php foreach ($_SESSION['cart'] as $key => $cart) : ?>
-                                <?= var_dump($cart) ?>
+                               
                                 <tr>
                                     <th><input type="checkbox" id="check" name="selected_items[]" value="<?= $key ?>"></th>
                                     <th>

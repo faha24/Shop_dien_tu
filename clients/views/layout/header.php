@@ -97,7 +97,7 @@
 <i class="fa fa-check-circle-o"  aria-hidden="true"></i>
 <p><?= $_SESSION['alert'] ?></p>
 <div class="route">
-<button class="btn "><a href="index.php"> trang chủ</a></button>
+<button class="btn "><a href="index.php">trang chủ</a></button>
 <button class="btn"><a   href="<?=  $_SESSION['alert'] !="thanh toán thất bại" ? 'index.php?act=oder' : 'index.php?act=cart' ?>">  <?=  $_SESSION['alert'] !="thanh toán thất bại" ? 'trang quản lý' : 'trang giỏ hàng' ?></a></button>
 
 </div>
@@ -165,12 +165,14 @@
 						<div class="header-search">
 							<form action="index.php?act=search" method="post">
 								<select class="input-select" name="select">
-									<option value=" ">All Categories</option>
-									<option value="rerach2">Category 01</option>
-									<option value="rerach3">Category 02</option>
+									<option value=" ">Tất Cả</option>
+									<option value="Laptop Dell">Laptop Dell</option>
+									<option value="Laptop Asus">Laptop Asus</option>
+									<option value="Laptop MSI">Laptop MSI</option>
+									<option value="MacBook">MacBook</option>
 								</select>
 								<input class="input" placeholder="Search here" name="search">
-								<button class="search-btn" type="submit">Search</button>
+								<button class="search-btn" type="submit">Tìm kiếm</button>
 							</form>
 						</div>
 					</div>
@@ -180,21 +182,11 @@
 					<div class="col-md-3 clearfix">
 						<div class="header-ctn">
 							<!-- Wishlist -->
-							<div>
-								<a href="#">
-									<i class="fa fa-heart-o"></i>
-									<span>Your Wishlist</span>
-									<div class="qty">2</div>
-								</a>
-							</div>
-							<!-- /Wishlist -->
-
-							<!-- Cart -->
 							<div class="dropdown">
-								<a href="index.php?act=cart" class="dropdown-toggle" aria-expanded="true">
-									<i class="fa fa-shopping-cart"></i>
-									<span>Your Cart</span>
-									<div class="qty">3</div>
+								<a href="index.php?act=searchOder" class="dropdown-toggle" aria-expanded="true">
+								<i class="fa fa-file-text-o" aria-hidden="true"></i>
+									<span>Đơn Hàng</span>
+									
 								</a>
 								<div class="cart-dropdown">
 									<div class="cart-list">
@@ -202,10 +194,7 @@
 											<div class="product-img">
 												<img src="./img/product01.png" alt="">
 											</div>
-											<div class="product-body">
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-											</div>
+										
 											<button class="delete"><i class="fa fa-close"></i></button>
 										</div>
 
@@ -229,6 +218,17 @@
 										<a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
 									</div>
 								</div>
+							</div>
+							<!-- /Wishlist -->
+
+							<!-- Cart -->
+							<div class="dropdown">
+								<a href="index.php?act=cart" class="dropdown-toggle" aria-expanded="true">
+									<i class="fa fa-shopping-cart"></i>
+									<span>Giỏ hàng</span>
+								
+								</a>
+							
 							</div>
 							<!-- /Cart -->
 

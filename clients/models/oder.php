@@ -80,7 +80,7 @@ class oder extends BaseModel
     {
         try {
             global $coreApp;
-            $sql = "SELECT oder_item.*, oders.oder_code ,oders.status, images.path FROM oder_item INNER JOIN oders ON oders.id = oder_item.oder_id INNER JOIN images ON images.product_id = oder_item.product_id WHERE oders.user_id = :id AND images.role = 1;";
+            $sql = "SELECT oder_item.*, oders.oder_code ,oders.status,oders.payment, images.path FROM oder_item INNER JOIN oders ON oders.id = oder_item.oder_id INNER JOIN images ON images.product_id = oder_item.product_id WHERE oders.user_id = :id AND images.role = 1;";
 
             $stmt = $this->conn->prepare($sql);
 
@@ -90,6 +90,19 @@ class oder extends BaseModel
         } catch (Exception $e) {
             $coreApp->debug($e);
         }
+    }
+    public function seachOder($num){
+        try {
+            global $coreApp;
+            $sql = "SELECT * FROM `oders` WHERE (`oder_code`='$num') OR (`std` = '$num') ORDER BY oders.id DESC";
+            // var_dump($sql);
+            // die();
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            $coreApp->debug($e);
+        } 
     }
     private function convertToArray($data)
     {

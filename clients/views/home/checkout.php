@@ -15,8 +15,8 @@
 $total_amount = 0;
 foreach ($data['data_oder'] as $item) {
 	$total_amount += $item['subtotal'];
-}
-var_dump($data);
+} 
+
 $json_data = json_encode($data['data_oder']);
 ?>
 <nav id="navigation">
@@ -231,10 +231,24 @@ $json_data = json_encode($data['data_oder']);
 						<div class="order-col">
 							<div>Shiping</div>
 							<div><strong>FREE</strong></div>
+						</div><div class="order-col" >
+							<div>giảm giá </div>
+							<div><strong id="sales">0%</strong></div>
+							
 						</div>
-						<div class="order-col">
+						<div id="form_sale"></div>
+						<div class="order-col" >
 							<div><strong>TOTAL</strong></div>
-							<div><strong class="order-total">$<?= $total_amount ?></strong></div>
+							<div style="font-size: 24px; color: #D10024;">$<strong class="order-total" id="total"><?= $total_amount ?></strong></div> 
+
+							
+						</div>
+						<div class="header-search">
+						
+						<div><strong>mã giảm giá</strong></div> <br>	
+								<input id ="voucher_input" class="input" placeholder="Search here" name="search"> <br> <br> <a onclick="get_voucher()" class="btn btn-danger">sử dụng </a>
+							
+							
 						</div>
 					</div>
 					<div class="payment-method">

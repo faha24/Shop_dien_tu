@@ -8,6 +8,7 @@ class HomeController extends BaseController
     public $commentModel;
     public $userModel;
     public $adressModel;
+    public $voucherModel;
 
     public function loadModels()
     {
@@ -17,6 +18,7 @@ class HomeController extends BaseController
         $this->router = new Route();
         $this->oderModel = new oder();
         $this ->commentModel = new comment();
+        $this -> voucherModel = new Vouchers();
     }
 
     public function index()
@@ -90,6 +92,7 @@ class HomeController extends BaseController
                 $seach = $_POST['search'];
                 $cate = $_POST['select'];
                 // var_dump($seach,$cate);
+
                $search = $this->homeModel->findSeach($seach,$cate);
                $seling = $search;
                usort($seling, function($a, $b) {
@@ -99,6 +102,17 @@ class HomeController extends BaseController
        $this->viewApp->requestView('home.search',['search'=>$search,'seling' => $seling]);
 
     }
+   public function searchOder(){
+    include './clients/views/home/searchOder.php';
+   } 
+   public function RequestOder(){
+    if($_SERVER['REQUEST_METHOD' ]== 'POST'){
+        $search = $_POST['search'];
+    $data = $this->oderModel->seachOder($search);
+    include './clients/views/home/searchOder.php';
+  
+    }
+   }
     public function detail()
     {
         $id = $_GET['id'];
@@ -255,8 +269,14 @@ class HomeController extends BaseController
                 $std = $_POST['tel'];
              
             }
-            
+           if(isset($_POST['sale'])){
+            $amount = $_POST['amount'] - ($_POST['amount'] * $_POST['sale'] / 100) ;
+           }else{
             $amount = $_POST['amount'];
+           }
+        //    var_dump( $amount);
+        //    die();
+           
             $check = $_POST['check'];
       
             if(isset($_POST['user_id'])) {
@@ -320,7 +340,7 @@ class HomeController extends BaseController
                 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-                $vnp_Returnurl = "http://localhost/Shop_dien_tu/index.php?act=cart&id=".$id   ;
+                $vnp_Returnurl = "http://localhost/du_an_1/Shop_dien_tu/index.php?act=cart&id=".$id   ;
                 $vnp_TmnCode = "3S63W6MR";//Mã website tại VNPAY 
                 $vnp_HashSecret = "1VP6KLP1H2MOZKMNZZWHIR7HDMX6KEBC"; //Chuỗi bí mật
                 // var_dump($vnp_HashSecret);
@@ -330,7 +350,7 @@ class HomeController extends BaseController
                 // sang VNPAY
                 $vnp_OrderInfo = 'thanh toán đơn hàng test';
                 $vnp_OrderType = 'billpayment';
-                $vnp_Amount = $subtotals * 100;
+                $vnp_Amount =  $amount * 2500000;
                 $vnp_Locale = 'vn';
                 $vnp_BankCode = '';
                 $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
@@ -444,6 +464,23 @@ class HomeController extends BaseController
          $this-> commentModel-> insertTable($data); 
          $this->router->redirectClient('detail', ['id' => $_POST['pr_id']]);
         }
+    }
+    public function get_voucher(){
+        if (isset($_GET['code'])) {
+            $code = $_GET['code'];
+            $cate = $this->voucherModel->findCodeTable($code);
+        
+            if ($cate !== null) {
+                $response = array('data' => $cate);
+            } else {
+                $response = array('error' => 'No data found for the given code.');
+            }
+        } else {
+            $response = array('error' => 'Code parameter is missing.');
+        }
+        
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
     }
 

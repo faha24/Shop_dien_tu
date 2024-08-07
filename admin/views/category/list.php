@@ -52,7 +52,7 @@
              
               <th>category_des</th>
             
-            
+            <th></th>
             </tr>
           </thead>
 
@@ -66,9 +66,10 @@
                 <th><?= $key['category_name'] ?>
                 
               </th>
+              <th><?= $key['category_des'] ?></th>
               <th><?= $key ['total_products']  ?>  <?= $key['total_products'] == 0 ? '( có thể xóa)' : '' ?></th>
                 
-                <th><?= $key['category_des'] ?></th>
+             <th></th>
            
          
                

@@ -26,4 +26,7 @@ match ($route->getAct()) {
     'delete_adress' => (new UserController())->del_dres(),
     'edit_adress_view' => (new UserController())->edit_adress_view(),
     'edit_adress' => (new UserController())->edit_adress(),
+    'searchOder' =>(new HomeController())->searchOder(),
+    'requestOder' => (new HomeController())->RequestOder(),
+    'voucher' => (new HomeController())->get_voucher(),
 };

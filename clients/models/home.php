@@ -65,6 +65,7 @@ ORDER BY
             $coreApp->debug($e);
         }
     }
+   
     public function allproducts()
     {
         try {

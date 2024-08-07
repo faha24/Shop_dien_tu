@@ -111,6 +111,7 @@ $data = array_filter($data, function($item) {
                                 <th>sản phẩm </th>
                                 <th>giá</th>
                                 <th>số lượng</th>
+								<th>trạng thái thanh toán</th>
                                 <th>trạng thái</th>
                             </tr>
                             <?php if(isset($data)) { ?>
@@ -133,6 +134,7 @@ $data = array_filter($data, function($item) {
 
                                     </th>
                                     <th><?= $cart['subtotals'] ?></th>
+									
                                     <th>
                                         <div class="cart_qt">
                                             
@@ -140,6 +142,8 @@ $data = array_filter($data, function($item) {
                                            
                                         </div>
                                     </th>
+								 
+									<th><?= $cart['payment']== 1 ? "Đã thanh toán" : "Chưa thanh toán" ?></th>
                                     <th id="product-price"><?php switch ($cart['status']) {
                                         case 0:
                                             echo "chờ xác nhận";
