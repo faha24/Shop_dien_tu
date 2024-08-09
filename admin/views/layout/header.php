@@ -42,18 +42,28 @@
 	    <div class="sidebar-header">
 		   <h3><img src="./lib/img/logo.png" class="img-fluid"/><span>Admin</span></h3>
 		</div>
+		
 		<ul class="list-unstyled component m-0">
-		  <li class="active">
-		  <a href="index.php?mode=admin" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
+		<li class="dropdown">
+		  <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" 
+		  class="dropdown-toggle">
+		  <i class="material-icons">fact_check</i>Order
+		  </a>
+		  <ul class="collapse list-unstyled menu" id="homeSubmenu4" >
+		     <li >
+				<a href="index.php?mode=admin&act=oder_manage">Order</a></li>
+			
+		  </ul>
 		  </li>
+	
 		  
 		  <li class="dropdown">
 		  <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">inventory_2</i>product
+		  <i class="material-icons">inventory_2</i>Product
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
-		     <li><a href="index.php?mode=admin&act=product">product Manage</a></li>
+		     <li><a href="index.php?mode=admin&act=product">Product Manage</a></li>
 			
 		  </ul>
 		  </li>
@@ -73,24 +83,15 @@
 	
 		  
 		  
-		   <li class="dropdown">
-		  <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">fact_check</i>order
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu4">
-		     <li><a href="index.php?mode=admin&act=oder_manage">order</a></li>
-			
-		  </ul>
-		  </li>
+		
 		  
 		   <li class="dropdown">
 		  <a href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">person</i>user
+		  <i class="material-icons">person</i>User
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu5">
-		     <li><a href="index.php?mode=admin&act=user">user</a></li>
+		     <li><a href="index.php?mode=admin&act=user">User</a></li>
 			 
 		  </ul>
 		  </li>
@@ -98,10 +99,10 @@
 		  <li class="dropdown">
 		  <a href="#homeSubmenu6" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <i class="material-icons">comment</i>comment
+		  <i class="material-icons">comment</i>Comment
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu6">
-		     <li><a href="index.php?mode=admin&act=comment">comment</a></li>
+		     <li><a href="index.php?mode=admin&act=comment">Comment</a></li>
 		
 		  </ul>
 		  </li>
@@ -109,12 +110,12 @@
 		  
 		
 		  
-		   
+		
 		  <li class="">
-		  <a href="index.php" class=""><i class="material-icons">home</i>home </a>
+		  <a href="index.php" class=""><i class="material-icons">home</i>Home </a>
 		  </li>
 		  <li class="">
-		  <a href="index.php?act=logout" class=""><i class="material-icons">logout</i>logout </a>
+		  <a href="index.php?act=logout" class=""><i class="material-icons">logout</i>Logout </a>
 		  </li>
 		
 		</ul>

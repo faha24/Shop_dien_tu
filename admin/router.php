@@ -3,7 +3,7 @@
 if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) {
     match ($route->getAct()) {
 
-        '/' => (new DashboardController())->dashboard(),
+        '/' => (new OderController())->Index(),
         'product' => (new ProductController())->List(),
         'add_pr' => (new ProductController())->addproducts(),
         'delete_pr' => (new ProductController())->deleteProduct(),
