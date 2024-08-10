@@ -46,12 +46,12 @@
                   <input type="checkbox" id="selectAll">
                   <label for="selectAll"></label> -->
               </th>
-              <th>id</th>
-              <th>category_name</th>
-              <th>product_qty</th>
-             
-              <th>category_des</th>
+              <th>Id</th>
+              <th>Category_name</th>
             
+             
+              <th>Category_des</th>
+              <th>Category_qty</th>
             <th></th>
             </tr>
           </thead>
@@ -242,7 +242,7 @@
 <footer class="footer">
   <div class="container-fluid">
     <div class="footer-in">
-      <p class="mb-0">&copy 2021 Vishweb Design . All Rights Reserved.</p>
+      <p class="mb-0">COPY-BY-DU-AN-1</p>
     </div>
   </div>
 </footer>

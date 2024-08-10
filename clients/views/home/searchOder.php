@@ -98,7 +98,7 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-					<li><a href="index.php<?=isset($_SESSION['username']) ? '?act=user_manager' : "?act=login"?>"><i class="fa fa-user-o"></i> <?= isset($_SESSION['username']) ? $_SESSION['username'] : "Đăng Nhập" ?></a></li>
+					<li><a href="index.php<?= isset($_SESSION['username']) ? ($_SESSION['username'] === 'admin' ? '?mode=admin' : '?act=user_manager') : '?act=login' ?>"><i class="fa fa-user-o"></i> <?= isset($_SESSION['username']) ? $_SESSION['username'] : "Đăng Nhập" ?></a></li>
 				<li><a href="index.php?act=<?=isset($_SESSION['username']) ? 'logout' : "reiget"?>"><i class="fa fa-user-o"></i><?= isset($_SESSION['username']) ? 'Đăng xuất' : "Đăng ký" ?></a></li>
 			</ul>
 				</div>

@@ -108,7 +108,8 @@ class BaseModel {
             }
             // Thêm id vào mảng parameters
             $parameters[':id'] = $id;
-
+           
+         
             return $stmt->execute($parameters);
         } catch(Exception $e) {
             $coreApp->debug($e);

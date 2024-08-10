@@ -129,11 +129,11 @@
                   <input type="checkbox" id="selectAll">
                   <label for="selectAll"></label> -->
               </th>
-              <th>id</th>
-              <th>color_id</th>
-              <th>size_id</th>
-              <th>quantity</th>
-              <th>price</th>
+              <th>Id</th>
+              <th>Color_id</th>
+              <th>Color_name</th>
+              <th>Quantity</th>
+              <th>Price</th>
               <th></th>
             </tr>
           </thead>
@@ -143,15 +143,15 @@
             <?php foreach ($data['Details'] as $key) { ?>
               <tr>
                 <th></th>
-                <th><?= $key['id'] ?> </th>
+                <th><?= $key['id']?> </th>
                 <th><?= $key['color_id'] ?></th>
-                <th></th>
+                <th><?= $key['color_name'] ?></th>
                 <th><?= $key['quantity'] ?></th>
                 <th><?= $key['price'] ?></th>
 
 
                 <th>
-                  <a onclick="get_pr_edit('<?= $key['id'] ?>')" href="#editEmployeeModal" class="edit" data-toggle="modal">
+                  <a onclick="get_vr_edit('<?= $key['id'] ?>',<?= $_GET['id'] ?>)" href="#editEmployeeModal" class="edit" data-toggle="modal">
                     <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                   </a>
                   <a onclick="return confirm('chac chưa')" href="index.php?mode=admin&act=delete_pr_dt&id=<?= $key['id'] ?> &pr_id=<?= $data['id'] ?>" class="delete" data-toggle="modal">
@@ -212,24 +212,29 @@
               </div>
               <div class="form-group">
                 <label>Giá sản phẩm</label>
-                <input type="number" class="form-control" required name="price" id="product_price">
+                <input type="number" class="form-control" required name="price" >
               </div>
 
 
               <div class="form-group">
                 <label>color sản phẩm </label>
                 <select name="color_id" id="">
-                  <?php foreach ($data['color'] as $list) { ?>
-                    <!-- <option value="<?= $list['id'] ?>"><?= $list['color_name'] ?></option> -->
-                    <?php foreach ($data['Details'] as $key) {
-                      if ($list['id'] != $key['id']) {
-                      } else { ?>
-                        <option value="<?= $list['id'] ?>"><?= $list['color_name'] ?></option>
+                  <?php foreach ($data['color'] as $list) {
+                    $isMatched = false;
+                    foreach ($data['Details'] as $key) {
+                      if ($list['id'] == $key['id']) {
+                        $isMatched = true;
+                        break; // Nếu đã tìm thấy trùng khớp, không cần tiếp tục lặp
+                      }
+                    }
 
-                    <?php   }
-                 }   ?>
-                  <?php } ?>
+                    // Chỉ hiển thị các tùy chọn không trùng khớp
+                    if (!$isMatched) { ?>
+                      <option value="<?= $list['id'] ?>"><?= $list['color_name'] ?></option>
+                  <?php }
+                  } ?>
                 </select>
+
               </div>
 
 
@@ -260,45 +265,21 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="index.php?mode=admin&act=edit_pr" method="POST" enctype="multipart/form-data">
+          <form action="index.php?mode=admin&act=edit_pr_dt&id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
-              <div class="form-group" hidden>
-                <label>tên sản phẩm </label>
-                <input type="text" class="form-control" name="id" id="id_pr">
+            <div class="form-group">
+               
+                <input type="hidden" class="form-control" required name="id_detail" id="vr_id">
               </div>
-              <div class="form-group">
-                <label>tên sản phẩm </label>
-                <input type="text" class="form-control" required name="product_name" id="product_name">
+            <div class="form-group">
+                <label>Số lượng</label>
+                <input type="number" class="form-control" required name="quantity" id="vr_qty">
               </div>
               <div class="form-group">
                 <label>Giá sản phẩm</label>
-                <input type="number" class="form-control" required name="product_price" id="product_price">
-              </div>
-              <div class="form-group">
-                <label>Mô tả sản phẩm</label>
-                <textarea class="form-control" name="product_des" required id="product_des"></textarea>
-              </div>
-              <div class="form-group">
-                <label>số lượng</label>
-                <input type="number" class="form-control" required name="product_quantity" id="product_quantity">
-              </div>
-              <div class="form-group">
-                <label>ảnh Đại diện sản phẩm</label>
-                <input type="file" class="form-control" name="img">
-              </div>
-              <div class="form-group">
-                <label>ảnh mô tả</label>
-                <input type="file" class="form-control" name="images[]" multiple="multiple">
+                <input type="number" class="form-control" required name="price" id="vr_price">
               </div>
 
-              <div class="form-group">
-                <label>loại sản phẩm </label>
-                <select name="category_id" id="cate_id">
-                  <?php foreach ($data['categories'] as $list) { ?>
-                    <option value="<?= $list['id'] ?>"><?= $list['category_name'] ?></option>
-                  <?php } ?>
-                </select>
-              </div>
 
             </div>
             <div class="modal-footer">

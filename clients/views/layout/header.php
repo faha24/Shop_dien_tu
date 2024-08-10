@@ -33,8 +33,8 @@
 		}
 		.phu_bong{
 			position: absolute;
-			width: 100%;
-			height: 100%;
+			width: 400px;
+			height:  235px;
 			background-color: black;
 			opacity: 20%;
 			z-index: 900;
@@ -45,8 +45,8 @@
 			background-color: white;
 
 			width: 400px;
-			height: 200px;
-			border: 1px solid #D10024;
+			height: 235px;
+			border: 1px solid black;
 			/* line-height: 150px; */
 			top: 20%;
 			z-index: 1000;
@@ -56,14 +56,14 @@
 			i{
 				padding-left: 145px;
         font-size: 125px;
-		color: #D10024;
+		color: green;
 			}
 			p{
-				padding-left: 80px;
+				padding-left: 43px;
 			}
 			.route{
 				button{
-					background-color: #D10024;
+					
 					&:hover{
 						a{
 						color: black;
@@ -97,8 +97,8 @@
 <i class="fa fa-check-circle-o"  aria-hidden="true"></i>
 <p><?= $_SESSION['alert'] ?></p>
 <div class="route">
-<button class="btn "><a href="index.php">trang chủ</a></button>
-<button class="btn"><a   href="<?=  $_SESSION['alert'] !="thanh toán thất bại" ? 'index.php?act=oder' : 'index.php?act=cart' ?>">  <?=  $_SESSION['alert'] !="thanh toán thất bại" ? 'trang quản lý' : 'trang giỏ hàng' ?></a></button>
+<button class="btn btn-danger "><a href="index.php">trang chủ</a></button>
+<button class="btn btn-danger"><a   href="<?=  $_SESSION['alert'] !="thanh toán thất bại" ? 'index.php?act=oder' : 'index.php?act=cart' ?>">  <?=  $_SESSION['alert'] !="thanh toán thất bại" ? 'trang quản lý' : 'trang giỏ hàng' ?></a></button>
 
 </div>
 

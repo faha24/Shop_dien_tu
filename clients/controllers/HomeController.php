@@ -40,7 +40,7 @@ class HomeController extends BaseController
                 'payment' => 1,
             );
             $this -> oderModel -> updateIdTable($data,$id);
-            $_SESSION['alert'] = ' thanh toán thành công';
+            // $_SESSION['alert'] = ' thanh toán thành công';
 
         }else{
             if(isset( $_SESSION['alert']) && isset($_GET['id'])){
@@ -148,8 +148,9 @@ class HomeController extends BaseController
                 $product_name = $_POST['pr_name'];
             }
 
-            // var_dump($_POST['color']);
+            // var_dump($_POST['pr_price']);
             // die();
+            
             $price = $_POST['pr_price'];
             $img = $_POST['img'];
             $qty = $_POST['pr_qty'];
@@ -284,7 +285,7 @@ class HomeController extends BaseController
             }else {
                 $user_id = null;
             }
-           
+           $oder_code = rand() . date('d');
             $data_oder = array(
                 'user_id' => $user_id,
                 'name' => $name,
@@ -293,7 +294,7 @@ class HomeController extends BaseController
                 'status' => 0,
                 'oderDate' => date('Y-m-d'),
                 'total_amount' => $amount,
-                'oder_code' => rand() . date('d'),
+                'oder_code' => $oder_code,
                 'payment' => 0,
                 
 
@@ -332,7 +333,7 @@ class HomeController extends BaseController
             $_SESSION['unset_cart'] = $cart ;
 
            
-            $_SESSION['alert'] = 'dat hang thanh cong';
+            $_SESSION['alert'] = 'Đặt hàng thành công mã oder của bạn là :' . " " . $oder_code ;
             $this->router->redirectClient('cart'  );
          
             if(isset($_POST['payment']) && $_POST['payment'] == 'payment'){

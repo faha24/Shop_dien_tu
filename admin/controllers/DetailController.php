@@ -54,5 +54,34 @@ class DetailController extends BaseController
         $this->detailModel->removeIdTable($id);
         $this->route->redirectAdmin('Detail_pr',['id' => $pr_id]);
     }
+    public function get_data(){
+        $id= $_GET['id'];
+        $vr = $this->detailModel->FindAllTable($id);
+        // $arr =  array($cate);
+        header('Content-Type: application/json');
     
+        echo json_encode($vr);
+    }
+    public function edit(){
+      $id_pr = $_GET['id'];
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id_detail = $_POST['id_detail'];
+           
+            $quantity = $_POST['quantity'];
+            $price = $_POST['price'];
+          
+       
+            $data = array(
+                'quantity' => $quantity,
+                'price' => $price,
+                
+               
+            );
+      $this -> detailModel -> updateIdTable($data, $id_detail);
+        $this -> route -> redirectAdmin('Detail_pr',['id'=> $id_pr] );
+     
+ 
+    }
+    }
 }

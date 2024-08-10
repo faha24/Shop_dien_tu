@@ -12,6 +12,7 @@ if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) {
         'Detail_pr' => (new DetailController())->Index(),
         'add_pr_dt' => (new DetailController())->create(),
         'delete_pr_dt' => (new DetailController())->delete(),
+        'edit_pr_dt' =>(new DetailController())->edit(),
         'category' => (new CategoriesController())->List(),
         'delete_cate' => (new CategoriesController())->deleteCate(),
         'getdataCate' => (new CategoriesController())->getdataCate(),
@@ -30,6 +31,10 @@ if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) {
         'comment' =>(new commentController())->list(),
         'ban_comment' => (new commentController())->ban(),
         'unban_comment' => (new commentController())->unban(),
+        'voucher' => (new VoucherController())->list(),
+        'add_voucher' =>(new VoucherController())->add(),
+        'edit_voucher' => (new VoucherController())->edit(),
+        'getdatavr' => (new DetailController())->get_data(),
     };
 } else {
     $route->redirectClient('');

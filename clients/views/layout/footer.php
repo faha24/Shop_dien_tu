@@ -96,7 +96,7 @@
 <script>
 		var thong_bao=document.getElementById("thong_bao1");
 		var phu_bong = document.getElementById("phu_bong");
-		console.log(phu_bong);
+	
 		setTimeout(function() {
 			if(thong_bao){
 			thong_bao.style.display="none";

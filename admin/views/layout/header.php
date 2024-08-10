@@ -105,15 +105,19 @@
 		     <li><a href="index.php?mode=admin&act=comment">Comment</a></li>
 		
 		  </ul>
+		  
 		  </li>
 		  
-		  
-		
-		  
+		  <li class="">
+		  <a href="index.php?mode=admin&act=voucher" class=""><i class="material-icons">subtitles</i>VouCher</a>
+		  </li>
+
 		
 		  <li class="">
 		  <a href="index.php" class=""><i class="material-icons">home</i>Home </a>
 		  </li>
+		
+		  
 		  <li class="">
 		  <a href="index.php?act=logout" class=""><i class="material-icons">logout</i>Logout </a>
 		  </li>
